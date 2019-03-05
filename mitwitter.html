@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>mi twiter</title>
+<style>
+  .twitter-timeline {
+  float:left;
+}
+</style>
+</head>
+
+<body>
+
+  <a class="twitter-timeline"
+  href="https://twitter.com/femfoyou/lists/pokemon-noticias"
+  data-width="300"
+  data-tweet-limit="1"
+  ></a>
+<a class="twitter-timeline"
+  href="https://twitter.com/femfoyou/lists/youtubers"
+  data-width="300"
+  data-tweet-limit="1"
+  ></a>
+<a class="twitter-timeline"
+  href="https://twitter.com/Chrales"
+  data-width="300"
+  data-tweet-limit="1"
+  ></a>
+<a class="twitter-timeline"
+  href="https://twitter.com/femfoyou"
+  data-width="300"
+  data-tweet-limit="1"
+  ></a>
+<!-- data-chrome="nofooter noborders" 
+data-aria-polite="assertive" 
+
+// Tweets by @TwitterDev - youtubers - Chrales
+// https://publish.twitter.com/?url=https%3A%2F%2Ftwitter.com%2FTwitterDev%2Ftimelines%2F539487832448843776&ref_src=twsrc%5Etfw#
+
+// <a class="twitter-grid" href="https://twitter.com/TwitterDev/timelines/539487832448843776">National Park Tweets</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<a class="twitter-grid" href="https://twitter.com/TwitterDev/timelines/539487832448843776">National Park Tweets</a>
+-->
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script>
+window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));
+</script>
+</body>
+</html>
