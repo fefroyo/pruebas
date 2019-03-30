@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* { margin:0;padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+/* grid contenido 
+_____________________________________*/
+.gridcontent {
+    /*border: 1px solid #484542;*/
+    /*background: hsla(0, 0%, 0%, 0.15);*/
+    padding: 15px;
+    margin: 0 auto;
+    text-align: center;
+}
+.element-item > * { margin: 0;padding: 0;}
+.element-item {
+    position: relative;
+    float: left;
+    width: 100px;
+    height: 275px;
+    margin: 5px;
+    padding: 10px;
+    /*background: #888;*/
+    border: 1px solid #484542;
+    /*color: #262524;*/
+    color: #000000;
+}
+.element-item .name {
+/*    position: absolute;
+    left: 10px;
+    top: 60px;*/
+    color: #9E9E9E;
+    text-align: left;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 1.4em;
+    font-weight: normal;
+}
+.element-item .number {
+/*    position: absolute;
+    right: 8px;
+    top: 5px;*/
+    font-weight: bold;
+    float: right;
+    color: #212121
+}
+.element-item img {
+  position: relative;
+  right: 0px;
+  /*top: -25px;*/
+  bottom: -50px; 
+}
+.red {color: #d50000!important}
+/* tabla */
+
+ul {list-style:none; margin:0;padding:0;overflow:hidden;}
+li {
+  float:left;
+  padding: 10px;
+  text-align: center;}
+li a {display:block;text-decoration:none;padding:10px;}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+th, td {text-align: left;padding: 8px;}
+tr:nth-child(even){background-color: #f2f2f2}
+</style>
+</head>
+
+<body>
+<div id="app">
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+
+
+
+  <ul v-for="pokemon in pokemons">
+    <!-- <li>{{pokemon.name}} - {{getMaxCpForTrainerLevel(pokemon, level, iv)}}</li> -->
+
+<div class="gridcontent">
+
+<h3 class="intro">{{ pokemon.name }} Max. CP level 40:</h3> 
+<h1 class="intro">{{getMaxCpForTrainerLevel(pokemon, level, iv)}}</h1>
+<!-- <h1 class="intro">{{getMaxCpForTrainerLevel(pokemon, 20, iv)}}</h1> -->
+
+<table class="tg">
+  <tr>
+    <th class="tg-0lax" rowspan="2">15 <span class="number red">{{getMaxCpForTrainerLevel(pokemon, 15, iv)}}</span></th>
+    <th class="tg-0lax" rowspan="2">20 <span class="number red">{{getMaxCpForTrainerLevel(pokemon, 20, iv)}}</span></th>
+    <th class="tg-0lax" rowspan="2">25 <span class="number red">{{getMaxCpForTrainerLevel(pokemon, 25, iv)}}</span></th>
+    <th class="tg-0lax">35 <span class="number red">{{getMaxCpForTrainerLevel(pokemon, 35, iv)}}</span></th>
+  </tr>
+  <tr>
+    <td class="tg-0lax"><img :src="'https://www.serebii.net/pokemongo/pokemon/'+pokemon.img+'.png'" width="80" :alt="pokemon.familyId"></td>
+  </tr>
+</table>
+
+  <!-- <div class="element-item">
+    <p class="name">1 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 1, iv)}}</span></p>
+    <p class="name">2 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 2, iv)}}</span></p>
+    <p class="name">3 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 3, iv)}}</span></p>
+    <p class="name">4 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 4, iv)}}</span></p>
+    <p class="name">5 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 5, iv)}}</span></p>
+    <p class="name">6 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 6, iv)}}</span></p>
+    <p class="name">7 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 7, iv)}}</span></p>
+    <p class="name">8 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 8, iv)}}</span></p>
+    <p class="name">9 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 9, iv)}}</span></p>
+    <p class="name">10 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 10, iv)}}</span></p>
+  </div>
+  
+  <div class="element-item">
+    <p class="name">11 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 11, iv)}}</span></p>
+    <p class="name">12 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 12, iv)}}</span></p>
+    <p class="name">13 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 13, iv)}}</span></p>
+    <p class="name">14 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 14, iv)}}</span></p>
+    <p class="name">15 <span class="number red">{{getMaxCpForTrainerLevel(pokemon, 15, iv)}}</span></p>
+    <p class="name">16 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 16, iv)}}</span></p>
+    <p class="name">17 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 17, iv)}}</span></p>
+    <p class="name">18 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 18, iv)}}</span></p>
+    <p class="name">19 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 19, iv)}}</span></p>
+    <p class="name">20 <span class="number red">{{getMaxCpForTrainerLevel(pokemon, 20, iv)}}</span></p>
+  </div>
+
+  <div class="element-item">
+    <p class="name">21 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 21, iv)}}</span></p>
+    <p class="name">22 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 22, iv)}}</span></p>
+    <p class="name">23 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 23, iv)}}</span></p>
+    <p class="name">24 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 24, iv)}}</span></p>
+    <p class="name">25 <span class="number red">{{getMaxCpForTrainerLevel(pokemon, 25, iv)}}</span></p>
+    <p class="name">26 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 26, iv)}}</span></p>
+    <p class="name">27 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 27, iv)}}</span></p>
+    <p class="name">28 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 28, iv)}}</span></p>
+    <p class="name">29 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 29, iv)}}</span></p>
+    <p class="name">30 <span class="number red">{{getMaxCpForTrainerLevel(pokemon, 30, iv)}}</span></p>
+  </div>
+  
+  <div class="element-item">
+    <p class="name">31 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 31, iv)}}</span></p>
+    <p class="name">32 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 32, iv)}}</span></p>
+    <p class="name">33 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 33, iv)}}</span></p>
+    <p class="name">34 <span class="number">{{getMaxCpForTrainerLevel(pokemon, 34, iv)}}</span></p>
+    <p class="name">35 <span class="number red">{{getMaxCpForTrainerLevel(pokemon, 35, iv)}}</span></p>
+
+<img :src="'https://www.serebii.net/pokemongo/pokemon/'+pokemon.img+'.png'" width="80" :alt="pokemon.familyId">
+
+  </div>
+    
+</div> -->
+  </ul>
+
+<!-- <img :src="'./pokes4/pokemon_icon_'+pokemon.familyId+'_00_shiny.png'" :alt="pokemon.familyId" width="80"> -->
+<!-- https://www.serebii.net/pokemongo/pokemon/shiny/001.png -->  
+<!-- <pre>
+{{ $data | json }}
+</pre>   -->
+  
+</div>
+
+<!-- var pokeDataSrc1 = '{"pokemon":[{"familyId": 155,"encounter_id":"p116","pokemon_id":"HORSEA","BaseDefense":96,"BaseStamina":78,"BaseAttack":116},{"familyId": 157,"encounter_id":"p084","pokemon_id":"DODUO","BaseDefense":96,"BaseStamina":78,"BaseAttack":116}]}'; -->
+  
+  
+<!-- <script src="https://vuejs.org/js/vue.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.js"></script>
+<script>
+'use strict';
+/* globals fetch, Vue */
+var levelCpMultiplier = {
+  1: 0.094,
+  1.5: 0.135137432,
+  2: 0.16639787,
+  2.5: 0.192650919,
+  3: 0.21573247,
+  3.5: 0.236572661,
+  4: 0.25572005,
+  4.5: 0.273530381,
+  5: 0.29024988,
+  5.5: 0.306057377,
+  6: 0.3210876,
+  6.5: 0.335445036,
+  7: 0.34921268,
+  7.5: 0.362457751,
+  8: 0.37523559,
+  8.5: 0.387592406,
+  9: 0.39956728,
+  9.5: 0.411193551,
+  10: 0.42250001,
+  10.5: 0.432926419,
+  11: 0.44310755,
+  11.5: 0.453059958,
+  12: 0.46279839,
+  12.5: 0.472336083,
+  13: 0.48168495,
+  13.5: 0.4908558,
+  14: 0.49985844,
+  14.5: 0.508701765,
+  15: 0.51739395,
+  15.5: 0.525942511,
+  16: 0.53435433,
+  16.5: 0.542635767,
+  17: 0.55079269,
+  17.5: 0.558830576,
+  18: 0.56675452,
+  18.5: 0.574569153,
+  19: 0.58227891,
+  19.5: 0.589887917,
+  20: 0.59740001,
+  20.5: 0.604818814,
+  21: 0.61215729,
+  21.5: 0.619399365,
+  22: 0.62656713,
+  22.5: 0.633644533,
+  23: 0.64065295,
+  23.5: 0.647576426,
+  24: 0.65443563,
+  24.5: 0.661214806,
+  25: 0.667934,
+  25.5: 0.674577537,
+  26: 0.68116492,
+  26.5: 0.687680648,
+  27: 0.69414365,
+  27.5: 0.700538673,
+  28: 0.70688421,
+  28.5: 0.713164996,
+  29: 0.71939909,
+  29.5: 0.725571552,
+  30: 0.7317,
+  30.5: 0.734741009,
+  31: 0.73776948,
+  31.5: 0.740785574,
+  32: 0.74378943,
+  32.5: 0.746781211,
+  33: 0.74976104,
+  33.5: 0.752729087,
+  34: 0.75568551,
+  34.5: 0.758630378,
+  35: 0.76156384,
+  35.5: 0.764486065,
+  36: 0.76739717,
+  36.5: 0.770297266,
+  37: 0.7731865,
+  37.5: 0.776064962,
+  38: 0.77893275,
+  38.5: 0.781790055,
+  39: 0.78463697,
+  39.5: 0.787473578,
+  40: 0.79030001,
+  40.5: 0.7931164
+};
+
+var pokes = [
+  {familyId: 351, img: '351', name: 'CASTFORM', 
+        BaseAttack: 139, BaseDefense: 139, BaseStamina: 172},
+  {familyId: 487, img: '487', name: 'GIRATINA altered', 
+        BaseAttack: 187, BaseDefense: 225, BaseStamina: 284},
+  {familyId: 487, img: '487-o', name: 'GIRATINA ORIGIN', 
+      BaseAttack: 225, BaseDefense: 187, BaseStamina: 284},
+    ];
+
+var getMaxCpForTrainerLevel = function getMaxCpForTrainerLevel(poke, trainerLevel) {
+  var _iv = vm.iv;
+  // console.log(_iv)
+  var maxPokemonLevel = Math.min(40, trainerLevel);
+  var maxCpMultiplier = levelCpMultiplier[maxPokemonLevel];
+  var ADS = (poke.BaseAttack + _iv.attack) * Math.pow((poke.BaseDefense + _iv.defense) * (poke.BaseStamina + _iv.stamina), 0.5);
+  var total = ADS * Math.pow(maxCpMultiplier, 2.0);
+  return Math.floor(total / 10);
+};
+
+var nivelEntrenador = '40';
+
+ var vm = new Vue({
+  el: '#app',
+  data: {
+    level: parseInt(window.location.search.match(/\d+/), 10) || nivelEntrenador,
+    filter: {
+      type: null,
+      familyId: 1
+    },
+    iv: {
+      attack: 15,
+      defense: 15,
+      stamina: 15
+    },
+    sort: {
+      by: 'id',
+      dir: 1
+    },
+    pokemons : pokes,
+  },
+   methods: {
+    getMaxCpForTrainerLevel: getMaxCpForTrainerLevel,
+    selectFamily: function selectFamily(familyId) {
+      this.filter.familyId = familyId;
+    },
+    sortBy: function sortBy() {
+      var by = arguments.length <= 0 || arguments[0] === undefined ? 'id' : arguments[0];
+
+      this.sort.dir *= this.sort.by === by ? -1 : 1;
+      this.sort.by = by;
+      var dir = this.sort.dir;
+
+      this.pokemons.sort(function (a, b) {
+        return a[by] * dir - b[by] * dir;
+      });
+    }
+  }
+
+});
+
+var pokemons = pokes;
+vm.pokemons = pokemons.map(function (poke, idx) {
+  var row = ~ ~(idx / 7);
+  var col = idx % 7;
+
+  poke.id = idx + 1;
+  poke.familyId *= 1;
+  poke.maxcp = getMaxCpForTrainerLevel(poke, 40);
+  poke.spritePos = col * -65 + 'px ' + row * -65 + 'px';
+
+  return poke;
+});
+  // vm.$mount('#app');
+</script>
+</body>
+</html>
