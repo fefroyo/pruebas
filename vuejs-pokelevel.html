@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-   <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="apple-touch-icon" href="./icons/pstop.png">
+   <link rel="shortcut icon" href="./icons/pstop.png">
+<title>Pokemon level CP</title>   
 <style>
 * { margin:0;padding: 0;
     -webkit-box-sizing: border-box;
@@ -179,6 +181,15 @@ tr:nth-child(even){background-color: #f2f2f2}
 <!-- <script src="https://vuejs.org/js/vue.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.js"></script>
 <script>
+var pokes = [
+  {familyId: 371, img: '371', name: 'BAGON', 
+        BaseAttack: 134, BaseDefense: 93, BaseStamina: 128},
+  {familyId: 487, img: '487', name: 'GIRATINA altered', 
+        BaseAttack: 187, BaseDefense: 225, BaseStamina: 284},
+  {familyId: 487, img: '487-o', name: 'GIRATINA ORIGIN', 
+      BaseAttack: 225, BaseDefense: 187, BaseStamina: 284},
+];
+   
 'use strict';
 /* globals fetch, Vue */
 var levelCpMultiplier = {
@@ -263,15 +274,6 @@ var levelCpMultiplier = {
   40: 0.79030001,
   40.5: 0.7931164
 };
-
-var pokes = [
-  {familyId: 351, img: '351', name: 'CASTFORM', 
-        BaseAttack: 139, BaseDefense: 139, BaseStamina: 172},
-  {familyId: 487, img: '487', name: 'GIRATINA altered', 
-        BaseAttack: 187, BaseDefense: 225, BaseStamina: 284},
-  {familyId: 487, img: '487-o', name: 'GIRATINA ORIGIN', 
-      BaseAttack: 225, BaseDefense: 187, BaseStamina: 284},
-    ];
 
 var getMaxCpForTrainerLevel = function getMaxCpForTrainerLevel(poke, trainerLevel) {
   var _iv = vm.iv;
