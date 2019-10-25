@@ -79,11 +79,10 @@ const search = document.getElementById('buscar');
 const matchList = document.getElementById('results');
 
 // https://script.google.com/macros/s/AKfycbywqjrk5repwjApd4pQvUeMUS3cJxIPMhGykRdKU5M6S9Cyswc/exec?spreadsheetId=1_-QRT2cyZEIlFNHYHhvGlSLvzg5WG9zoFDAJhZ1vqdI&sheet=allpokedex
-
 // https://script.google.com/macros/s/AKfycbywqjrk5repwjApd4pQvUeMUS3cJxIPMhGykRdKU5M6S9Cyswc/exec?spreadsheetId=1jBtXZdoxIYJlEAnJ8YbQ3NbUmPrBFqgtSbmMHMIQMck&sheet=users
 
 const searchStates = async searchText => {
-  const res = await fetch ('http://fefroyo.github.io/pruebas/allpokedex.json');
+  const res = await fetch ('allpokedex.json');
   const states = await res.json();
 
   let matches = states.filter(state => {
@@ -125,7 +124,6 @@ $("tr td#lista").click(function() {
 };
 
 search.addEventListener('input', () => searchStates(search.value));
-
 
 // <li class='list-group-item'><img src='https://www.serebii.net/pokemongo/pokemon/${match.id2}.png' height='20'>${match.name}</li>
 
