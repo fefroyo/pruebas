@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<style>
+@import url('https://fonts.googleapis.com/css?family=Oswald:300|Passion+One');
+*{ font-family: 'Oswald', sans-serif;}
+.pokemon-list td:nth-child(1) {
+    background-color: rgba(0,0,0,0.04);
+    width: 40px;
+    color: #666;
+    text-align: center;
+}
+.pokemon-list td:nth-child(2) {width: 75px;}
+.pokemon-list td:nth-child(3),
+.pokemon-list td:nth-child(7), .borrar {
+  font-weight: bold; cursor: pointer;
+}
+.pokemon-list td:nth-child(7) {width: 90px;}
+.pokemon-list td:nth-child(4),
+.pokemon-list td:nth-child(5),
+.pokemon-list td:nth-child(6) {
+/*width: 40px;*/
+}
+
+.pokemon-list td, .centro {text-align: center;}
+table, td, th {    
+    border: 1px solid #ddd;
+    text-align: left;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 auto;
+}
+table a {text-decoration: none;}
+th, td {padding: 5px;}
+
+.results {
+  position: relative;
+  width: 92%;
+  height: 550px;
+  margin: 0 auto;
+  margin-top: 64px;
+}
+
+.result {
+  margin:0;padding:0;
+  width: 150px;
+  height:150px;
+  overflow: scroll;
+  background-color: #ccc;
+  list-style: none;
+}
+.result::-webkit-scrollbar { 
+    display: none; 
+}
+</style>
+</head>
+
+<body>
+
+<div class="centro">
+  <!-- contenido -->
+<input type="text" id="buscar" class="search-input" placeholder="buscar...">
+
+<table class="tablesorter responsive-on-mobile pokemon-list tablesorter-default" style="width:300px">
+<tbody id="results"></tbody>
+</table><br>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+const search = document.getElementById('buscar');
+const matchList = document.getElementById('results');
+
+// https://script.google.com/macros/s/AKfycbywqjrk5repwjApd4pQvUeMUS3cJxIPMhGykRdKU5M6S9Cyswc/exec?spreadsheetId=1_-QRT2cyZEIlFNHYHhvGlSLvzg5WG9zoFDAJhZ1vqdI&sheet=allpokedex
+
+// https://script.google.com/macros/s/AKfycbywqjrk5repwjApd4pQvUeMUS3cJxIPMhGykRdKU5M6S9Cyswc/exec?spreadsheetId=1jBtXZdoxIYJlEAnJ8YbQ3NbUmPrBFqgtSbmMHMIQMck&sheet=users
+
+const searchStates = async searchText => {
+  const res = await fetch ('https://script.google.com/macros/s/AKfycbywqjrk5repwjApd4pQvUeMUS3cJxIPMhGykRdKU5M6S9Cyswc/exec?spreadsheetId=1_-QRT2cyZEIlFNHYHhvGlSLvzg5WG9zoFDAJhZ1vqdI&sheet=allpokedex');
+  const states = await res.json();
+
+  let matches = states.filter(state => {
+    const regex = new RegExp(`^${searchText}`,'gi');
+    return state.name.match(regex) || state.id2.match(regex);
+  })
+
+
+  if (searchText.length === 0){
+    matches = [];
+    matchList.innerHTML = '';
+  }
+  outputHtml(matches);
+};
+
+const outputHtml = matches => {
+  if(matches.length > 0){
+
+    const html = matches.map(match =>`
+      <tr><td><span>${match.id}</span></td><td id='lista'><img src='https://www.serebii.net/pokemongo/pokemon/${match.id2}.png' height='20' alt='${match.id2}'>${match.name}</td></tr>`
+      ).join('');
+
+    matchList.innerHTML = html;
+
+$("tr td#lista").click(function() {
+  $(".search-input").val($(this).text());
+  
+  matches = [];
+  matchList.innerHTML = '';
+  //console.log('clickado !!!')
+});
+
+
+  }
+};
+
+search.addEventListener('input', () => searchStates(search.value));          
+</script>
+</body>
+</html>
