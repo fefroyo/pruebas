@@ -1,0 +1,17 @@
+{
+  "data" : {
+  "values" : [620, 311, 653, 275, 520, 342],
+  "marginBetweenBars" : 2,
+  "barColors" : ["#1ABC9C", "#3498DB", "#9B59B6", "#34495E", "#F1C40F", "#E74C3C"],
+  "labelColors" : ["#000000"],
+  "labelFont" : "Verdana",
+  "labelText" : ["aaa", "bbb", "label 3", "label 4", "something", "final label"],
+  "labelPaddingLeft" : 10,
+  "height" : 400,
+  "width" : 400,
+  "backgroundColor" : "#445566",
+  "label" : true,
+  "value" : true,
+  "labelWidth" : 50
+  }
+}
