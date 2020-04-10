@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Mis notas</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css'>
+</head>
+
+<body>
+<!-- <div style="text-align: center;padding: 15px;"> -->
+
+<!-- <form @submit.prevent="agregarTarea(nuevaTarea)" class="form">
+    <div class="input-group">
+        <input v-model="nuevaTarea" type="text" class="form-control">
+        
+        <span class="input-group-btn">
+				<button class="btn btn-default" type="submit"><span
+                        class="glyphicon glyphicon-plus"></span> Añadir tarea</button>
+			</span>
+    </div>
+</form> -->
+
+<!-- <label for="buskemon">Buscar: </label>
+<input type="search" name="buskemon" v-model="buscar" />
+<button type="button" class="btn btn-default" v-on:click="sortBy('Titulo')">Titulo</button>
+<button type="button" class="btn btn-default"  v-on:click="sortBy('Texto')">Texto</button>
+<button type="button" class="btn btn-default"  v-on:click="sortBy('Fecha')">fecha</button>
+</div> -->
+
+<!-- <div class="pokemon-list-wrapper" >
+
+<div class="pokemon-list-item" v-for="poke in pokemons | orderBy sortKey order | filterBy buscar">
+<span id="{{ $key }}">
+
+<div class="name">{{poke.Titulo}}</div>
+<button type="button" class="btn btn-default" @click="eliminarTarea(poke)">eliminar</button>			
+
+</span></div>
+
+</div> -->
+<div style="text-align: center;padding: 15px;">
+<h2>Notas :</h2></div>
+
+<div class="input-group">
+  <input type="search" class="form-control" name="buskemon" v-model="buscar" />
+  <span class="input-group-btn">
+    <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+  </span>
+</div>
+
+<button type="button" class="btn btn-default" v-on:click="sortBy('Titulo')">Titulo</button>
+<button type="button" class="btn btn-default" v-on:click="sortBy('Texto')">Texto</button>
+<button type="button" class="btn btn-default" v-on:click="sortBy('Fecha')">fecha</button>
+
+<div class="col-xs-12 col-sm-12 col-md-offset-3 col-md-5 col-lg-offset-3 col-lg-5">
+
+<!-- <label for="buskemon">Buscar: </label>
+<input type="search" class="form-control" name="buskemon" v-model="buscar" /> -->
+
+
+<form @submit.prevent="agregarTarea(nuevaTarea)" class="form">
+<div class="input-group">
+  <input v-model="nuevaTarea" type="text" class="form-control">
+  <span class="input-group-btn">
+  <button class="btn btn-default" type="submit">
+    <span class="glyphicon glyphicon-plus"></span> Añadir tarea</button>
+  </span>
+</div>
+</form>
+
+ <ul class="list-group">
+            <li v-for="poke in pokemons | orderBy sortKey order | filterBy buscar"
+                class="list-group-item clearfix">
+                <h3>{{ poke.Titulo }}</h3>
+                <p class="lead">{{ poke.Texto }}</p>
+                
+                <input v-model="poke.Titulo"
+                       v-show="editandoTarea === $index"
+                       @blur="editandoTarea = null, editarTarea(poke)"
+                       type="text" class="form-control">
+                <input v-model="poke.Texto"
+                       v-show="editandoTarea === $index"
+                       @blur="editandoTarea = null, editarTarea(poke)"
+                       type="text" class="form-control">
+                <div>
+                    <span class="pull-right">
+                        <button @click="editandoTarea = $index"
+                                class="btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                        <button v-show="editandoTarea === $index"
+                                @click="editandoTarea = null, editarTarea(poke)"
+                                class="btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-floppy-saved"></span>
+                        </button>
+              <!--           <button @click="poke.completado = true"
+                                class="btn btn-primary btn-xs">
+                            <span class="glyphicon glyphicon-ok"></span></button> -->
+              <!--           <button @click="poke.completado = false"
+                                class="btn btn-primary btn-xs">
+                            <span class="glyphicon glyphicon-repeat"></span>
+                        </button> -->
+                        <button @click="eliminarTarea(poke)"
+                                class="btn btn-danger btn-xs">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </span>
+                </div>
+
+            </li>
+        </ul>
+</div>
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.min.js'></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+var config = {
+  apiKey: "AIzaSyAhxNlgerRn8cpnFt10COPKnzF_EXCmKAU",
+  authDomain: "notas-df2bc.firebaseapp.com",
+  databaseURL: "https://notas-df2bc.firebaseio.com",
+  projectId: "notas-df2bc",
+  storageBucket: "notas-df2bc.appspot.com",
+  messagingSenderId: "531023975467"
+};
+firebase.initializeApp(config);
+var dbnotas = firebase.database();
+
+var vm = new Vue({
+  el: 'body',
+
+  ready: function() {
+    dbnotas.ref('/').on('value',function(snapshot){
+      //console.log(snapshot.val());
+      //vm.pokemons = snapshot.val();
+      vm.pokemons = [];
+      var objeto = snapshot.val();
+      for (var poke in objeto){
+        vm.pokemons.unshift({
+          
+          '.key': poke,
+          
+          Titulo : objeto[poke].Titulo,
+          Texto : objeto[poke].Texto,
+          Fecha : objeto[poke].Fecha,
+          
+        }) 
+      }
+    })
+  },
+
+  data: {
+  	nuevaTarea: null,
+    editandoTarea: null,
+
+    pokemons: [],
+
+    order: 1,
+    sortKey: 'Pokedex'
+  },
+
+  methods: {
+
+  	agregarTarea: function (poke) {
+	    dbnotas.ref('/').push({
+			
+      // Titulo: 'Titulo',
+      Texto: poke,
+
+	    });
+	    this.nuevaTarea = '';
+    },
+
+    editarTarea: function (poke) {
+      dbnotas.ref('/' + poke['.key']).update({
+          Titulo: poke.Titulo,
+          Texto: poke.Texto
+      });
+    },
+    eliminarTarea: function (poke) {
+      dbnotas.ref('/' + poke['.key']).remove();
+    },
+    sortBy: function(key){      
+      this.sortKey = key;
+      this.order = this.order * -1;
+    }
+
+  }
+
+
+})
+
+
+// (function(){
+//     var fecha = new Date(),
+//         dia = fecha.getDate(),
+//         mes = fecha.getMonth() + 1,
+//         anio = fecha.getFullYear(),
+//         tiempo = prompt("Ingrese la cantidad de días a añadir"),
+//         addTime = tiempo * 86400; //Tiempo en segundos
+ 
+//     fecha.setSeconds(addTime); //Añado el tiempo
+ 
+//     document.body.innerHTML = "Fecha actual: " + dia + "/" + mes + "/" + anio + "<br />";
+//     document.body.innerHTML += "Tiempo añadido: " + tiempo + " días<br />";
+//     document.body.innerHTML += "Fecha final: " + fecha.getDate() + "/" + (fecha.getMonth() + 1) + "/" + fecha.getFullYear();
+// })();
+
+
+// var fecha = new Date(),
+//         dia = fecha.getDate(),
+
+
+// + fecha.getHours() + 'h ' + (fecha.getMonth()+1) + '/' + anio +
+
+// var fecha = new Date();
+// var hours = fecha.getHours();
+
+// var minutes = "0" + fecha.getMinutes();
+// var seconds = "0" + fecha.getSeconds();
+
+// var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
+//     fecha.setHours(fecha.getHours()+1);
+
+
+// descargas2020.com/descargar-torrent/119695_-1552683112-spider-man-un-nuevo-universo--blurayrip-ac3-5-1/
+// descargas2020.com/descargar-torrent/119689_-1552681112-the-flash---temporada-5--hdtv/
+</script>
+</body>
+</html>
