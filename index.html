@@ -83,7 +83,9 @@ tr:nth-child(even){background-color: #f2f2f2}
 
 <body>
 
-<!-- <h1 class="intro">max CP por nivel de entrenador</h1> -->
+<!-- <h1 class="intro">max CP por nivel de entrenador</h1> 
+https://www.pccomponentes.com/portatiles/acer/asus/gigabyte/lenovo/msi/pc-para-gaming
+-->
 <div class="box">
   <div id="pokeMaxCP" class="pokeMaxCP">
     <div class="pokeMaxCP__ctrl"></div>
@@ -289,7 +291,7 @@ var getMaxCpForTrainerLevel = function getMaxCpForTrainerLevel(poke, trainerLeve
   var _iv = vm.iv;
   var maxPokemonLevel = Math.min(40, trainerLevel);
   var maxCpMultiplier = levelCpMultiplier[maxPokemonLevel];
-  var ADS = (poke.BaseAttack + _iv.attack) * Math.pow((poke.BaseDefense + _iv.defense) * (poke.BaseStamina + _iv.stamina), 0.5);
+  var ADS = (pokemon.BaseAttack + _iv.attack) * Math.pow((pokemon.BaseDefense + _iv.defense) * (pokemon.BaseStamina + _iv.stamina), 0.5);
   var total = ADS * Math.pow(maxCpMultiplier, 2.0);
   return Math.floor(total / 10);
 };
@@ -344,12 +346,6 @@ fetch(pokeDataSrc).then(function (d) {
   return d.json();
 }).then(function (d) {
   var pokemons = d.pokemon;
-
-  //var pokemons = '{"pokemon":{"155":{"cpPerUpgrade":13.5,"BaseStamina":78,"BaseAttack":116,"BaseDefense":96,"name":"Cyndaquil"},"157":{"cpPerUpgrade":null,"BaseStamina":156,"BaseAttack":223,"BaseDefense":176,"name":"Typhlosion"}}}';
- 
-
-  console.log(pokemons)
-
   pokemons = Object.keys(pokemons).map(function (i) {
     return pokemons[i];
   });
