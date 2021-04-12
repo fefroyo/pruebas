@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap" rel="stylesheet">
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css'>
+</head>
+
+<body>
+
+<div style="text-align: center;padding: 15px;">
+<h2>Notas :</h2></div>
+
+<div class="input-group">
+  <input type="search" class="form-control" id="busca" name="buskemon" />
+  <span class="input-group-btn">
+    <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+  </span>
+</div>
+
+<!-- <button type="button" class="btn btn-default" v-on:click="sortBy('Titulo')">Titulo</button>
+<button type="button" class="btn btn-default" v-on:click="sortBy('Texto')">Texto</button>
+<button type="button" class="btn btn-default" v-on:click="sortBy('Fecha')">fecha</button> -->
+
+<div class="col-xs-12 col-sm-12">
+
+<!-- <label for="buskemon">Buscar: </label>
+<input type="search" class="form-control" name="buskemon" v-model="buscar" /> -->
+
+
+<!-- <form @submit.prevent="agregarTarea(nuevaTarea)" class="form">
+<div class="input-group">
+  <input v-model="nuevaTarea" type="text" class="form-control">
+  <span class="input-group-btn">
+  <button class="btn btn-default" type="submit">
+    <span class="glyphicon glyphicon-plus"></span> Añadir tarea</button>
+  </span>
+</div>
+</form> -->
+
+<div id="results"></div>
+
+
+<!--  <ul class="list-group">
+            <li v-for="poke in pokemons | orderBy sortKey order | filterBy buscar"
+                class="list-group-item clearfix">
+                <h3>{{ poke.Titulo }}</h3>
+                <p class="lead">{{ poke.Texto }}</p>
+                
+                <input v-model="poke.Titulo"
+                       v-show="editandoTarea === $index"
+                       @blur="editandoTarea = null, editarTarea(poke)"
+                       type="text" class="form-control">
+                <input v-model="poke.Texto"
+                       v-show="editandoTarea === $index"
+                       @blur="editandoTarea = null, editarTarea(poke)"
+                       type="text" class="form-control">
+                <div>
+                    <span class="pull-right">
+                        <button @click="editandoTarea = $index"
+                                class="btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                        <button v-show="editandoTarea === $index"
+                                @click="editandoTarea = null, editarTarea(poke)"
+                                class="btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-floppy-saved"></span>
+                        </button>
+
+                        <button @click="eliminarTarea(poke)"
+                                class="btn btn-danger btn-xs">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+
+                    </span>
+                </div>
+
+            </li>
+        </ul> -->
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#busca").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("ul li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+
+// datos de google excel
+var spreadsheetID = "1FwuQQhGgQx8ojsD71bh_4FEln0TDATHSi6MWP-9uDuQ";
+var url = "https://spreadsheets.google.com/feeds/list/"+spreadsheetID+"/1/public/values?alt=json";
+
+console.log(url)
+
+$.getJSON(url, function(data) {
+
+  var entry = data.feed.entry;
+  var grouped = [];
+
+	  entry.forEach(function (a) {
+
+		  grouped.push({ 
+		      id: a.gsx$id.$t,
+		      Titulo: a.gsx$titulo.$t,
+		      Descripcion: a.gsx$descripcion.$t,
+		      Link: a.gsx$link.$t,
+		  });
+	  });
+
+ 
+
+var notas1 = JSON.stringify(grouped);
+var misnotas = JSON.parse(notas1);   
+
+//var search = $(".search-input");
+// console.log(pokedex)
+
+
+var nota = '<ul class="list-group">';
+	
+for (i = 0; i < misnotas.length; i++) {
+
+	nota += '<li class="list-group-item clearfix">'+
+	'<h3>'+misnotas[i].Titulo+'</h3>'+
+	'<p class="lead">'+misnotas[i].Descripcion+'</p>'+
+	'<a href="'+misnotas[i].Link+'">link web</a>'+
+	'</li>';
+}			
+	nota += '</ul>';
+
+  document.getElementById('results').innerHTML = nota;
+
+});
+</script>
+</body>
+</html>
