@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+html,body {margin: 0;border: 0; text-align: center;}
+.juntos {
+	display: block;
+	text-align: center;
+	width: 750px;
+	height: 170px;
+	/*padding-top: 20px;*/
+}
+.titulo {
+	position: relative;top: 30px;
+}
+.coche {
+	float: left;
+}
+.coche img	{
+	margin-right:1%;
+	width: 200px;
+}
+.matricula {
+	float: right;
+	margin-top: 6%;
+}
+
+/* circle img */
+div#infoboxpic {
+    width: 160px;
+    /* 310 */
+    height: 160px;
+    border-radius: 50%;
+    background-color: black; /* #8bd1e5 */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 22px;
+    position: relative;
+    z-index: 8;
+}
+div#infoboxpicin {
+    width: 150px;
+    /* 300 */
+    height: 150px;
+    border-radius: 50%;
+    background-color: #fff;
+    position: relative;
+    top: 5px;
+    left: 5px;
+}
+div#infoboxpicimg {
+    width: 150px;
+    /* 296 */
+    height: 150px;
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    opacity: .85;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { 
+    display: block;
+}
+.wrapper {
+	width: 978px;
+	max-width: 96%;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.col {
+	float: left;
+	margin-left: 3.2%;
+	margin-bottom: 5px;
+	padding: 5px 0;
+}
+</style>	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+function mmat109(matricula) {
+  valids = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  document.write(
+    '<center><p><img SRC="http://fefroyo.github.io/pruebas/matriculas/0EUini.jpg" height=109 width=66>'
+  );
+
+  i = 0;
+  while (i < matricula.length) {
+    l = matricula.charAt(i).toUpperCase();
+    if (valids.search(l) == -1)
+      document.write(
+        '<img SRC="http://fefroyo.github.io/pruebas/matriculas/0EUgui.jpg" height=109 width=30>'
+      );
+    else
+      document.write(
+        '<img SRC="http://fefroyo.github.io/pruebas/matriculas/' +
+          l +
+          '.jpg" height=109 width=54>'
+      );
+    i++;
+  }
+  document.write(
+    '<img SRC="http://fefroyo.github.io/pruebas/matriculas/0EUfin.jpg" height=109 width=22></p></center>'
+  );
+}
+//var matricula = mmat109("0000 gvf");
+//mmat109("0300 gvf");
+</script>
+</head>
+
+<body>
+<center>
+<p><b><font size="16px" face="Arial Narrow"><a href="http://www.sme-matriculas.es/ult_e.html">MATRÍCULAS ESPAÑOLAS</a></font></b><br>
+<font color="#000080">
+<b><font face="Arial Narrow">MATRICULAS FAMILIA</font></b><br>
+</font>
+</p>
+</center>
+
+<!-- coche -->
+<div class="wrapper grid2">
+<div class="titulo">850 coupe</div>
+<article class="col">
+<div id="infoboxpic"><div id="infoboxpicin">
+	<div id="infoboxpicimg" style="background-image: url(nuestroscoches/s850c.png);"></div>
+</div></div>
+</article>
+
+<article class="col">
+<div class="matricula">
+	<script>
+	mmat109("B 0000 aa");
+	</script>
+</div>
+</article>
+</div>
+
+<!-- coche -->
+<div class="wrapper grid2">
+<div class="titulo">SEAT 127</div>
+<article class="col">
+<div id="infoboxpic"><div id="infoboxpicin">
+	<div id="infoboxpicimg" style="background-image: url(nuestroscoches/127.png);"></div>
+</div></div>
+</article>
+
+<article class="col">
+<div class="matricula">
+	<script>
+	mmat109("B 0038 la");
+	</script>
+</div>
+</article>
+</div>
+
+
+<!-- coche -->
+<div class="wrapper grid2">
+<div class="titulo">SEAT 124</div>	
+<article class="col">
+<div id="infoboxpic"><div id="infoboxpicin">
+	<div id="infoboxpicimg" style="background-image: url(nuestroscoches/124.png);"></div>
+</div></div>
+</article>
+
+<article class="col">
+<div class="matricula">
+	<script>
+	mmat109("0300 gvf");
+	</script>
+</div>
+</article>
+</div>
+
+<!-- coche -->
+<div class="wrapper grid2">
+<div class="titulo">Chrysler c180 rojo/coupe</div>
+<article class="col">
+<div id="infoboxpic"><div id="infoboxpicin">
+	<div id="infoboxpicimg" style="background-image: url(nuestroscoches/c180.png);"></div>
+</div></div>
+</article>
+
+<article class="col">
+<div class="matricula">
+	<script>
+	mmat109("B 0000 aa");
+	</script>
+</div>
+</article>
+</div>
+
+<!-- coche -->
+<div class="wrapper grid2">
+<div class="titulo">TALBOT HORIZON TXE - 1981</div>
+<article class="col">
+<div id="infoboxpic"><div id="infoboxpicin">
+	<div id="infoboxpicimg" style="background-image: url(nuestroscoches/talbot.jpg);"></div>
+</div></div>
+</article>
+
+<article class="col">
+<div class="matricula">
+	<script>
+	mmat109("B 9378 ew");
+	</script>
+</div>
+</article>
+</div>
+
+
+<!-- coche -->
+<div class="wrapper grid2">
+<div class="titulo">RENAULT 21 NEVADA - 1987</div>	
+<article class="col">
+<div id="infoboxpic"><div id="infoboxpicin">
+	<div id="infoboxpicimg" style="background-image: url(nuestroscoches/r21n.jpg);"></div>
+</div></div>
+</article>
+
+<article class="col">
+<div class="matricula">
+	<script>
+	mmat109("b 0022 ip");
+	</script>
+</div>
+</article>
+</div>
+
+<!-- coche -->
+<div class="wrapper grid2">
+<div class="titulo">OPEL ZAFIRA - xx/JULIO/2000</div>
+<article class="col">
+<div id="infoboxpic"><div id="infoboxpicin">
+	<div id="infoboxpicimg" style="background-image: url(nuestroscoches/zafira1.png);"></div>
+</div></div>
+</article>
+
+<article class="col">
+<div class="matricula">
+	<script>
+	mmat109("B 9411 wv");
+	</script>
+</div>
+</article>
+</div>
+
+<!-- coche -->
+<div class="wrapper grid2">
+<div class="titulo">PEUGEOT 206 - 21/JUL/2000</div>
+<article class="col">
+<div id="infoboxpic"><div id="infoboxpicin">
+	<div id="infoboxpicimg" style="background-image: url(nuestroscoches/206.jpg);"></div>
+</div></div>
+</article>
+
+<article class="col">
+<div class="matricula">
+	<script>
+	mmat109("B 0206 xd");
+	</script>
+</div>
+</article>
+</div>
+
+
+<!-- coche -->
+<div class="wrapper grid2">
+<div class="titulo">FIAT STILO - 16/DIC/2002</div>	
+<article class="col">
+<div id="infoboxpic"><div id="infoboxpicin">
+	<div id="infoboxpicimg" style="background-image: url(cochecitos/stilo1.jpg);"></div>
+</div></div>
+</article>
+
+<article class="col">
+<div class="matricula">
+	<script>
+	mmat109("1612 ccs");
+	</script>
+</div>
+</article>
+</div>
+
+<!-- coche -->
+<div class="wrapper grid2">
+<div class="titulo">KIA CEE'D - 22/MAR/13</div>
+<article class="col">
+<div id="infoboxpic"><div id="infoboxpicin">
+	<div id="infoboxpicimg" style="background-image: url(cochecitos/ceed.jpg);"></div>
+</div></div>
+</article>
+
+<article class="col">
+<div class="matricula">
+	<script>
+	mmat109("8220 hpk");
+	</script>
+</div>
+</article>
+</div>
+
+<!-- coche -->
+<div class="wrapper grid2">
+<div class="titulo">KORANDO - 15/DIC/13</div>
+<article class="col">
+<div id="infoboxpic"><div id="infoboxpicin">
+	<div id="infoboxpicimg" style="background-image: url(nuestroscoches/korando.jpg);"></div>
+</div></div>
+</article>
+
+<article class="col">
+<div class="matricula">
+	<script>
+	mmat109("1579 hty");
+	</script>
+</div>
+</article>
+</div>
+
+<!-- coche -->
+<div class="wrapper grid2">
+<div class="titulo">FIAT STILO lidi - JUN/06</div>	
+<article class="col">
+<div id="infoboxpic"><div id="infoboxpicin">
+	<div id="infoboxpicimg" style="background-image: url(cochecitos/stilo1.jpg);"></div>
+</div></div>
+</article>
+
+<article class="col">
+<div class="matricula">
+	<script>
+	mmat109("9883 fbm");
+	</script>
+</div>
+</article>
+</div>
+
+<!-- coche -->
+<div class="wrapper grid2">
+<div class="titulo">SMART - (DIC/99)</div>	
+<article class="col">
+<div id="infoboxpic"><div id="infoboxpicin">
+	<div id="infoboxpicimg" style="background-image: url(nuestroscoches/smart.jpg);"></div>
+</div></div>
+</article>
+
+<article class="col">
+<div class="matricula">
+	<script>
+	mmat109("b 1476 vk");
+	</script>
+</div>
+</article>
+</div>
+
+<!-- coche -->
+<div class="wrapper grid2">
+<div class="titulo">MAZDA 2 - 15/JUL/15</div>	
+<article class="col">
+<div id="infoboxpic"><div id="infoboxpicin">
+	<div id="infoboxpicimg" style="background-image: url(cochecitos/mazda2.jpg);"></div>
+</div></div>
+</article>
+
+<article class="col">
+<div class="matricula">
+	<script>
+	mmat109("7180 jgw");
+	</script>
+</div>
+</article>
+</div>
+
+<!-- coche -->
+<div class="wrapper grid2">
+<div class="titulo">Ford Focus Sportbreak - (marzo/11) - 28/12/15</div>	
+<article class="col">
+<div id="infoboxpic"><div id="infoboxpicin">
+	<div id="infoboxpicimg" style="background-image: url(nuestroscoches/fordsb.jpg);"></div>
+</div></div>
+</article>
+
+<article class="col">
+<div class="matricula">
+	<script>
+	mmat109("5404 hck");
+	</script>
+</div>
+</article>
+</div>
+
+<!-- coche -->
+<div class="wrapper grid2">
+<div class="titulo">KIA CEED GTline - (marzo/16) - 21/03/16</div>	
+<article class="col">
+<div id="infoboxpic"><div id="infoboxpicin">
+	<div id="infoboxpicimg" style="background-image: url(cochecitos/ceedgtline.jpg);"></div>
+</div></div>
+</article>
+
+<article class="col">
+<div class="matricula">
+	<script>
+	mmat109("2131 jmp");
+	</script>
+</div>
+</article>
+</div>
+
+<!-- coche -->
+<div class="wrapper grid2">
+<div class="titulo">Hyundai i10 - (enero/18) - 30/01/18</div>
+<article class="col">
+<div id="infoboxpic"><div id="infoboxpicin">
+	<div id="infoboxpicimg" style="background-image: url(cochecitos/hyundai102.png);"></div>
+</div></div>
+</article>
+
+<article class="col">
+<div class="matricula">
+	<script>
+	mmat109("3741 khb");
+	</script>
+</div>
+</article>
+</div>
+
+<!-- coche -->
+<div class="wrapper grid2">
+<div class="titulo">Audi Q5 sLine MAY/21</div>
+<article class="col">
+<div id="infoboxpic"><div id="infoboxpicin">
+	<div id="infoboxpicimg" style="background-image: url(cochecitos/audiq5-1.jpg);"></div>
+</div></div>
+</article>
+
+<article class="col">
+<div class="matricula">
+	<script>
+	mmat109("0000 gvf");
+	</script>
+</div>
+</article>
+</div>
+
+</body>
+</html>
