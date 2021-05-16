@@ -353,11 +353,13 @@ $.ajax({
 // var moonphase = data.DailyForecasts[0].Moon.Phase+' '+data.DailyForecasts[0].Moon.Age;
 
 var langluna = localStorage.getItem('langu');
+var day = new Date();
+var mes = day.getMonth()+1;
+var anio = day.getUTCFullYear();	 
 
 // luna
 $.getJSON( "http://www.wdisseny.com/lluna/api/?lang="
-  +langluna+"&month=5&year=2016&size=50&lightColor=currentColor&shadeColor=black&sizeQuarter=20&texturize=true&LDZ=1462053600&", function(moon) {
-  var day = new Date().getDate();
+  +langluna+"&month="+mes+"&year="+anio+"&size=50&lightColor=currentColor&shadeColor=black&sizeQuarter=20&texturize=true&LDZ=1462053600&", function(moon) {
 
   // $("#laluna").addClass('icon-luna');
   $("#laluna").html(moon.phase[day].svg);
@@ -420,20 +422,7 @@ $.getJSON( "http://www.wdisseny.com/lluna/api/?lang="
     document.getElementById("five-day").innerHTML = porhoras; 
   }
   porhoras += "</ul>";
-
-// var wiconFdia = data.DailyForecasts[0].Day.Icon;
-// var wiconFnoche = data.DailyForecasts[0].Night.Icon;
-
-// if (wiconFdia < 10){
-//   var wIconf = 'http://apidev.accuweather.com/developers/Media/Default/WeatherIcons/0'+wiconFdia+'-s.png';
-// }else if (wiconFdia){
-//   var wIconf = 'http://apidev.accuweather.com/developers/Media/Default/WeatherIcons/'+wiconFdia+'-s.png'; 
-// }else if (wiconFnoche < 10){
-//   var wIconf = 'http://apidev.accuweather.com/developers/Media/Default/WeatherIcons/0'+wiconFnoche+'-s.png'; 
-// }else if (wiconFnoche){
-//   var wIconf = 'http://apidev.accuweather.com/developers/Media/Default/WeatherIcons/'+wiconFnoche+'-s.png'; 
-// }
-//         $('.icnfore').attr('src', wIconf);
+	  
       },
     });
 
