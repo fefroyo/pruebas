@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.centrado {
+	text-align: center;
+	font-size: 32px;
+	font-weight: bold;
+}
+</style>
+
+</head>
+
+<body>
+
+
+<!-- <input type='text' id='textView' bind='value:name' />
+<p class="centrado" id='projection' bind='textContent:name'></p> -->
+jquery
+<input type='text' id='textView' />
+<p class="centrado" id='projection'></p>
+
+<input type="text" id="matt">
+<button onclick="mmat109(matricula)">enviar</button>
+<div id="peugeot"></div>
+
+<p id="demo2"></p>
+
+
+First Name: <input type="text" id="myText">
+<button onclick="myFunction()">Try it</button>
+<p id="demo"></p>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+function myFunction() {
+    var x = document.getElementById("myText").value;
+    document.getElementById("demo").innerHTML = x;
+}
+
+
+function mmat109(matricula){
+
+// var x = document.getElementById("matt").value;
+
+valids="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+// matricula=matricula.toUpperCase()
+
+document.write("<center><p><img SRC=\"0EUini.jpg\" height=109 width=66>")
+
+i=0 
+while (i<matricula.length){
+	l=matricula.charAt(i).toUpperCase()
+	if (valids.search(l)==-1) document.write("<img SRC=\"0EUgui.jpg\" height=109 width=30>")
+	else document.write("<img SRC=\""+l+".jpg\" height=109 width=54>") 
+i++
+}
+document.write("<img SRC=\"0EUfin.jpg\" height=109 width=22></p></center>")
+
+
+}
+// var abc = document.getElementById("matt").value;
+// document.getElementById('peugeot').innerHTML = abc;
+var msgInput = $('#textView'),
+    msgOutput = $('#projection'),
+    message = '';
+
+msgInput.on('keyup', function(){
+    message = this.value;
+    msgOutput.text(mmat109(message));
+});
+
+var matricula = mmat109("abcd jpg");
+document.getElementById('peugeot').innerHTML = matricula;
+
+
+
+// suma de numeros javascript
+
+function sumAll() {
+    var i, sum = 0;
+    for(i = 0; i < arguments.length; i++) {
+        sum += arguments[i];
+    }
+    return sum;
+} 
+document.getElementById("demo2").innerHTML =
+sumAll(10, 123, 500, 115, 44, 88);
+
+
+
+// data binding
+// var obj = {
+//     name: ""
+// };
+// var el = document.getElementById("textView");
+// dataBind(el, obj);
+// var field = document.getElementById("projection");
+// dataBind(field, obj);
+
+// function dataBind(domElement, obj) {
+
+//     var bind = domElement.getAttribute("bind").split(":");
+//     var domAttr = bind[0].trim();
+//     var itemAttr = bind[1].trim();
+
+//     Object.observe(obj, function (change) {
+//         domElement[domAttr] = obj[itemAttr];
+//     });
+//     new MutationObserver(updateObj).observe(domElement, {
+//         attributes: true,
+//         childList: true,
+//         characterData: true
+//     });
+//     domElement.addEventListener("keyup", updateObj);
+//     domElement.addEventListener("click",updateObj);
+//     function updateObj(){
+//         obj[itemAttr] = domElement[domAttr];   
+//     }
+//     domElement[domAttr] = obj[itemAttr];
+// }
+
+
+// data binding jquery
+// $(function(){
+
+// });
+</script>
+</body>
+</html>
