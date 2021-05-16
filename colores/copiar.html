@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Español</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            margin-top: 200px;
+            background-color: #34495e;
+        }
+    
+    </style>
+</head>
+<body>
+    <button id="copiar">
+        Copiame
+    </button>
+    <br>
+    <br>
+    <input type="text" placeholder="Pegar pulsa CTL+V">
+
+    <script>
+        //Inicio del boton de copia
+        var playButton = $('#copiar');  // Se obtiene el id del boton clicable
+        playButton.click(function(){    // Acá se pone a escucha el evento click para el boton antes definido
+            copyToClipboard();          // Esto llama a la funcion copyToClipboard() (Está mas abajo)
+        });
+        //fin del boton de copia
+        //Funcion copytoClipboard
+        function copyToClipboard() {
+        $("body").append("<input type='text' id='temp'>"); // Acá se crea un input dinamicamente con un id para luego asignarle un valor sombreado
+        $("#temp").val("este es el texto copiado").select(); // Acá se obtiene el id del boton que hemos creado antes y se le agrega un valor y luego se le sombrea con select(). Para agregar lo que se quiere copiar editas val("EDITAESTOAQUÍ")
+        document.execCommand("copy"); // document.execCommand("copy") manda a copiar el texto seleccionado en el documento
+        $("#temp").remove();
+
+    }
+    </script>
+</body>
+</html>
