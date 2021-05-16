@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+
+<input id="foo">
+<div id="input2"></div>
+
+
+<script>
+
+
+document.getElementById("foo").addEventListener("keyup", myFunction);
+
+function myFunction() {
+
+// var msgInput = document.getElementById('foo'),
+//     msgOutput = document.getElementById('input2'),
+//     message = '';
+
+    var msgInput = document.getElementById('foo');
+  	var x = msgInput.value;
+    document.getElementById('input2').innerHTML = x;
+}
+
+// msgInput.on('keyup', function(){
+//     message = this.value;
+//     msgOutput.text(message);
+// });
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html ng-app="miApp">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+   	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>App base de angularjs</title>
+  <!-- Styling -->
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+  
+</head>
+<body>
+  
+  <!-- this is the default view (required) -->
+
+<div ng-controller='ctrl'>
+
+	<div>
+      <label>Name:</label>
+      <input type="text" ng-model="yourName" placeholder="Enter a name here">
+      <hr />
+      <h1>Hello {{yourName}}!</h1>
+    </div>     
+	
+	<div id="peugeot"></div>
+</div>
+
+
+<!-- Angular -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script>
+angular.module("miApp", [])
+
+.controller('ctrl', function($scope) {
+    
+
+})
+</script>
+<script>
+function mmat109(matricula){
+valids="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+matricula=matricula.toUpperCase()
+
+var inicio = "<center><p><img SRC=\"0EUini.jpg\" height=109 width=66>";
+
+// document.write("<center><p><img SRC=\"0EUini.jpg\" height=109 width=66>")
+
+i=0 
+while (i<matricula.length){
+	l=matricula.charAt(i)
+	if (valids.search(l)==-1) document.write("<img SRC=\"0EUgui.jpg\" height=109 width=30>")
+	else document.write("<img SRC=\""+l+".jpg\" height=109 width=54>") 
+i++
+}
+
+var final = "<img SRC=\"0EUfin.jpg\" height=109 width=22></p></center>";
+// document.write("<img SRC=\"0EUfin.jpg\" height=109 width=22></p></center>")
+}
+
+var matricula1 = mmat109(inicio + "" + final);
+document.getElementById('peugeot').innerHTML = matricula1;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+	<!-- contenido -->
+<input type="text" class="city location task" id="autocomplete" placeholder="Enter your location"/>
+<input type="submit" value="Buscar">
+<button id="add2">Add</button>
+<div id="todos2"></div>
+
+<div id="peugeot"></div>
+
+
+<input type="text" id="matricu" >
+<button onclick="deletrearPalabra()">matriculación</button>
+
+<p id="pala"></p>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+
+function mmat109(matricula){
+valids="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+matricula=matricula.toUpperCase();
+
+var matri = '<center><p><img SRC=\"0EUini.jpg\" height=109 width=66>';
+// document.write("<center><p><img SRC=\"0EUini.jpg\" height=109 width=66>")
+
+var i=0;
+while (i<matricula.length){
+	var l=matricula.charAt(i);
+	if (valids.search(l)==-1){
+            matri += '<img SRC=\"0EUgui.jpg\" height=109 width=30>';}
+		// document.write("<img SRC=\"0EUgui.jpg\" height=109 width=30>")
+	else{
+        matri += '<img SRC=\"'+l+'.jpg\" height=109 width=54>';}
+		// document.write("<img SRC=\""+l+".jpg\" height=109 width=54>") 
+i++;
+}
+matri += '<img SRC=\"0EUfin.jpg\" height=109 width=22></p></center>';
+// document.write("<img SRC=\"0EUfin.jpg\" height=109 width=22></p></center>")
+
+document.getElementById('peugeot').innerHTML = matri;
+}
+// mmat109("1234 jpg");
+
+
+var msgInput = $('#autocomplete'),
+    msgOutput = $('#peugeot'),
+    message = '';
+
+msgInput.on('keyup', function(){
+    message = this.value;
+    msgOutput.text(mmat109(message));
+});
+
+
+// añadir a campos
+
+function get_todos() {
+    var todos = new Array;
+    var todos_str = localStorage.getItem('todo');
+    if (todos_str !== null) {
+        todos = JSON.parse(todos_str); 
+    } return todos;
+}
+function add() {
+    var task = document.getElementById('autocomplete').value;
+    var todos = get_todos();
+    todos.push(task);
+    localStorage.setItem('todo', JSON.stringify(todos));
+    show();
+    return false;
+}
+function remove() {
+    var id = this.getAttribute('id');
+    var todos = get_todos();
+    todos.splice(id, 1);
+    localStorage.setItem('todo', JSON.stringify(todos));
+    show();
+    return false;
+}
+function show() {
+    var todos = get_todos();
+
+    var html = '<ul>';
+ 	// valids="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	// var matricula=matricula.toUpperCase();
+	// i=0 
+	// while (i<matricula.length){
+	// 	l=matricula.charAt(i)
+	// 	if (valids.search(l)==-1) 
+	// 		html += '<img SRC=\"0EUgui.jpg\" height=109 width=30>';
+	// 	else 
+	// 		html += '<img SRC=\"'+l+'.jpg\" height=109 width=54>'; 
+	// i++
+	// }
+
+    for(var i=0; i<todos.length; i++) {
+    	
+        html += '<li><img src=\"0EUini.jpg\" height=109 width=66><img src=\"'
+        	+todos[i].toUpperCase()+'.jpg\" height=109 width=54><img SRC=\"0EUfin.jpg\" height=109 width=22> <button class="remove" id="' + i + '">x'+localStorage['palab2']+'</button></li>';
+    };
+
+    html += '</ul>';
+ 
+    document.getElementById('todos2').innerHTML = html;
+ 
+    var buttons = document.getElementsByClassName('remove');
+    for (var i=0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', remove);
+    };
+}
+document.getElementById('add2').addEventListener('click', add);
+show();
+
+// palabra
+
+function deletrearPalabra(){
+var palabra;
+localStorage['palab2'] = "";
+var msg = localStorage['palab2'];
+// var msg = document.getElementById('matricu').value;
+// palabra = prompt('Introduzca matricula: ');
+localStorage['palabr'] = document.getElementById('matricu').value;
+// palabra = "Introduzca"; 
+palabra = localStorage['palabr'];
+
+var i=1;
+if(palabra == ''){
+	msg = 'No se introdujo ningún carácter.';
+}else{
+	// while(i<=palabra.length){
+	// 	msg += '<img src=\"0EUini.jpg\" height=109 width=66><img src=\" '+ palabra.charAt(i-1).toUpperCase() + '.jpg\" height=109 width=54><img SRC=\"0EUfin.jpg\" height=109 width=22>';
+	// 	i++; 
+	// }
+	msg += '<img src=\"0EUini.jpg\" height=109 width=66>';
+
+	valids="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	// palabra = palabra.toUpperCase();
+	i=0 
+	while (i<palabra.length){
+		l = palabra.charAt(i).toUpperCase()
+		if (valids.search(l)==-1) 
+			msg += '<img SRC=\"0EUgui.jpg\" height=109 width=30>';
+		else 
+			msg += '<img SRC=\"'+l+'.jpg\" height=109 width=54>'; 
+		i++
+	}
+	msg += '<img SRC=\"0EUfin.jpg\" height=109 width=22>';
+}
+//	alert(msg);
+document.getElementById('pala').innerHTML = msg;
+}
+// deletrearPalabra();
+</script>
+</body>
+</html>
