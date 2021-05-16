@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>simple wunderground javascript geo</title>
+    <link rel="stylesheet" href="css/ionic.min.css">
+    <link rel="stylesheet" href="css/app2.css">
+    <link rel="stylesheet" href="css/wundericons.css">
+    <link rel="stylesheet" href="css/moonphase.css">
+    
+  </head>
+
+<body class="platform-android mibody">
+
+<!-- modal 1
+________________-->
+<div class="mimodal" id="mimodal1">
+<div class="modal-dialog-window">
+    
+    <header class="bar bar-header bar-dark">
+      <h1 class="title">Config</h1>
+      <div class="button button-clear modalclose">
+      <span class="icon ion-close"></span></div>
+    </header>
+    
+<ion-content class="scroll-content ionic-scroll has-header has-footer" scroll="false">
+<div class="list">
+
+<label class="item item-input item-select">
+<div class="input-label">Idioma</div>
+<select id="states">
+  <option value="SP">Español</option>
+  <option value="BR">Portuguese</option>
+  <option value="EN">English</option>
+  <option value="DL">German</option>
+  <option value="IT">Italian</option>
+  <option value="RU">Russian</option>
+  <option value="CN">Chinese - Simplified</option>
+  <option value="JP">Japanese</option>
+</select>
+</label>
+
+<label class="item item-radio">
+  <input type="radio" name="options" id="tempeC" value="metric" checked="checked">
+  <div class="radio-content">
+    <div class="item-content">Celsius °C</div>
+    <i class="radio-icon ion-checkmark"></i>
+  </div>
+</label>
+<label class="item item-radio">
+  <input type="radio" name="options" id="tempeF" value="imperial" >
+  <div class="radio-content">
+    <div class="item-content">Fahrenheit °F</div>
+    <i class="radio-icon ion-checkmark"></i>
+  </div>
+</label>
+</div>
+</ion-content>
+</div>
+
+</div>
+<!-- fin modal1 -->
+
+<!-- modal 2
+______________ -->
+<div class="mimodal" id="mimodal2">
+<div class="modal-dialog-window">
+    
+<header class="bar bar-header bar-dark">
+<button class="button button-clear" id="add2">
+<i class="icon ion-plus"></i></button>
+<h1 class="title">lugares</h1>
+<div class="button button-clear modalclose">
+<i class="icon ion-close"></i></div>
+</header>
+    
+<ion-content class="scroll-content has-header">
+<div class="contenido" style="background-color: white;">
+
+<div class="item item-input-inset">
+<label for="city" class="item-input-wrapper">
+ <!-- input busca lugar -->
+<input type="text" id="autocomplete" class="buscar" name="city" placeholder="..." />
+</label>
+<button type="submit" id="awxSearchButton" form="autocomplete" class="button button-clear js-geolocation">
+  <i class="icon ion-ios-search"></i>
+</button>
+</div>
+<ul id="results" ></ul>
+<!-- lista lugares -->
+<span id="delegateAnchor"></span>
+
+</div>
+</ion-content>
+</div>
+
+</div>
+<!-- fin modal2 -->
+
+
+<!-- 	header dark - light -->
+<!-- <header class="bar bar-header bar-light" 
+	style="	background-color: transparent !important; 
+			border: 1px solid transparent !important; 
+      color: inherit !important;">
+
+<button id="geobutton" class="button button-icon icon ion-ios-location"></button>
+  <div class="h1 title" id="milocation">?</div>
+<div class="buttons buttons-right" >
+	<button class="button button-icon icon ion-search" id="basic-modal2"></button>
+	<button class="button button-icon icon ion-gear-a" id="basic-modal"></button>
+</div>
+</header> -->
+
+<header class="cabezera">
+  <i class="material-icons icon-menu ion-ios-location"></i>
+  <div class="titulo" id="milocation">?</div>
+  <span></span>
+  <a href="#" class="material-icons ion-gear-a" id="basic-modal"></a>
+  <a href="#" class="material-icons ion-search" id="basic-modal2"></a>
+</header>
+
+<!-- contenido -->
+<ion-content class=" scroll-content has-header2">
+<div class="contenido contenidoplus">
+
+<div id="current-weather">
+<h5 id="condicion">?</h5>
+
+<div id="img2">
+  <i class="wicon current" id="accuicon" style="line-height: 150px;"></i>
+  <!-- <img id="icn" src="" width="150"/> -->
+  <!-- <img src="icons/01d.png" width="150"> -->
+</div>
+  <h5>
+    <span id="temp-hi"><i class="icon ion-arrow-up-c"></i> 
+    <span id="temp-hi-t">?</span>°</span>
+    <span id="temp-lo"><i class="icon ion-arrow-down-c"></i> 
+    <span id="temp-lo-t">?</span>°</span>
+  </h5>
+  <h1 class="current-temp"><span id="current-temp">?</span>°</h1>
+<!--   <h5>Luna : <span id="luna_ilum"></span>%<br /><span id="luna_desc"></span></h5> -->
+</div>
+
+<div class="weather-box">
+<h4 class="title">Detalles</h4>
+<table style="width: 100%" class="todayInDetails"><tbody>
+<tr>
+  <td rowspan="6" style="text-align: center; border: 0;vertical-align: middle;">
+  <i class="wicon wfore" id="laluna"></i>
+  <span id="luna_ilum">80%</span><br/>
+  <span id="luna_desc">gibosa</span>
+  </td><td></td>
+</tr>
+<tr><td class="row2"><span class="coleft">Sensación :</span>
+<span class="colright" id="sensacion">?</span></td></tr>
+<tr><td class="row2"><span class="coleft">Humedad :</span>
+<span class="colright"><span id="humedad">? %</span></span></td></tr>
+<tr><td class="row2"><span class="coleft">Viento :</span>
+<span class="colright" id="viento">? km/h</span></td></tr>
+<tr><td class="row2"><span class="coleft">Presion :</span>
+<span class="colright" id="presion">? mba</span></td></tr>
+</tbody></table>
+<!-- <div class="row">
+    <div class="col"><span>Sensación : </span></div>
+    <div class="col"><span id="sensacion">?</span>°</div>
+</div>
+<div class="row">
+    <div class="col"><span>Humedad : </span></div>
+    <div class="col"><span id="humedad">?°</span></div>
+</div>
+<div class="row">
+    <div class="col"><span>Viento : </span></div>
+    <div class="col"><span id="viento">?°</span> km/h</div>
+</div>
+<div class="row">
+    <div class="col"><span>Presion : </span></div>
+    <div class="col"><span id="presion">?°</span> mba</div>
+</div> -->
+
+</div>
+
+<!-- scroller -->
+<div id="wrapper">
+  <div id="scroller">
+  <ul class="five-day" id="mishoras">
+
+<li class="daily">
+  <div class="day">13:00</div>
+  <!-- <img src="http://icons.wxug.com/i/c/i/sunny.gif"> -->
+  <i class="wicon whoras icon-clear"></i>
+  <!-- <div class="desc">CONDITION</div> -->
+  <div class="temp high">88 &deg;</div>
+  <div class="temp low">88 %</div></li>
+
+<li class="daily"><div class="day">DOM</div>
+  <i class="wicon whoras icon-clear"></i>
+  <!-- <img src="http://icons.wxug.com/i/c/i/sunny.gif"> -->
+  <!-- <div class="desc">CONDITION</div> -->
+  <div class="temp high">88 &deg;</div><div class="temp low">88 &deg;</div></li>
+</ul>
+  </div>
+</div>
+<!-- fin scroller -->
+
+<div class="weather-box">
+  <h4 class="title">Forecast</h4>
+  <span id="five-day">
+<ul>
+  <li class="row">
+  <div class="col"><span>lun</span></div><div class="col">
+  <!-- <img src="" class="icnfore" width="50"> -->
+  <i class="wicon wfore icon-clear"></i>
+  <!-- <img id="icn" src="" width="150"/> -->
+  </div><div class="col">
+   <span class="temp-high">--°</span>
+   <span class="temp-low">--°</span>
+  </div></li>
+
+  <li class="row">
+  <div class="col"><span>lun</span></div><div class="col">
+  <i class="wicon wfore icon-clear"></i>
+  <!-- <img src="icon-v4/partlycloudy.svg" class="icnfore" width="50"> -->
+  </div><div class="col">
+   <span class="temp-high">--°</span>
+   <span class="temp-low">--°</span>
+  </div></li>
+  </ul>
+
+  </span>
+</div>
+
+<!-- footer  https://www.wunderground.com/graphics/moonpictsnew/moon4.gif -->
+<div class="col" style="text-align: center;">
+<span id="sol">?</span></div>
+<div class="col" style="text-align: center;padding:5px;">
+  <!-- <i class="wicon wfore" id="laluna"></i> -->
+  <!-- <img src="https://www.wunderground.com/graphics/moonpictsnew/moon4.gif" class="laluna" width="50"> -->
+</div>
+<div class="col" style="text-align: center;">Updated to: 
+<span id="ultimahora">?</span></div>
+<div class="col" style="text-align: center;">
+  <span class="logo">Powered by: wunderground</span>
+</div>
+
+</div>
+</ion-content>
+
+
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/iscroll_520.js"></script>
+<script src="js/moment-with-locales.min.js"></script>
+<script src="js/wunder.js"></script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>ioncss openweather</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/ionic.min.css">
+  <!-- <link rel="stylesheet" href="css/owfont-regular.min.css"> -->
+  <link rel="stylesheet" href="css/app2.css">
+  <link rel="stylesheet" href="css/openicons.css">
+<style>
+
+</style>
+</head>
+<body class="platform-android mibody">
+	
+<!-- modal 1
+________________-->
+<div class="mimodal" id="mimodal1">
+<div class="modal-dialog-window">
+    
+    <header class="bar bar-header bar-dark">
+      <h1 class="title">Config</h1>
+      <div class="button button-clear modalclose">
+      <span class="icon ion-close"></span></div>
+    </header>
+    
+<ion-content class="scroll-content ionic-scroll has-header has-footer" scroll="false">
+<div class="list">
+
+<label class="item item-input item-select">
+<div class="input-label">Idioma</div>
+<select id="states">
+  <option selected value="es">Español</option>
+  <option value="ca">Català</option>
+  <option value="pt">Portuguese</option>
+  <option value="fr">French</option>
+  <option value="en">English</option>
+  <option value="de">German</option>
+  <option value="it">Italian</option>
+  <option value="ru">Russian</option>
+  <option value="zh_cn">Chinese - Simplified</option>
+  <option value="sv">Swedish</option>
+  <option value="uk">Ukrainian</option>
+</select>
+</label>
+
+<label class="item item-radio">
+  <input type="radio" name="options" id="units_metric" value="metric" checked="checked">
+  <div class="radio-content">
+    <div class="item-content">Celsius °C</div>
+    <i class="radio-icon ion-checkmark"></i>
+  </div>
+</label>
+<label class="item item-radio">
+  <input type="radio" name="options" id="units_imperial" value="imperial" >
+  <div class="radio-content">
+    <div class="item-content">Fahrenheit °F</div>
+    <i class="radio-icon ion-checkmark"></i>
+  </div>
+</label>
+
+<!-- <input type="radio" id="units_metric" name="units" value="metric"/> Metric -->
+<!-- <input type="radio" id="units_imperial" name="units" value="imperial"/> Imperial -->
+
+</div>
+    </ion-content>
+</div>
+
+</div>
+
+<!-- modal 2
+______________ -->
+<div class="mimodal" id="mimodal2">
+<div class="modal-dialog-window">
+    
+    <header class="bar bar-header bar-dark">
+    <button class="button button-clear" id="add2">
+    <i class="icon ion-plus"></i></button>
+      <h1 class="title">lugares</h1>
+      <div class="button button-clear modalclose">
+      <i class="icon ion-close"></i></div>
+    </header>
+    
+<ion-content class="scroll-content has-header">
+<div class="contenido" style="background-color: white;">
+
+<div class="item item-input-inset">
+<label class="item-input-wrapper">
+  <input class="city location" type="text" placeholder="..." id="autocomplete">
+</label>
+<button type="submit" id="buscalocal2" form="autocomplete" class="button button-clear js-geolocation">
+  <i class="icon ion-ios-search"></i>
+</button>
+</div>
+<ul id="results" ></ul>
+<!-- lista lugares -->
+<span id="delegateAnchor"></span>
+<!-- <ul class="list" id="side-bar">
+<li><a class="item item-icon-left item-icon-right" href="#" data-desc="' + todos[i] + '" data-city="' + todos[i]+ '"><i class="icon ion-ios-location"></i>' + todos[i] +' <i class="icon ion-ios-close-outline remove" id="' + i  + '"></i></a>
+
+<a class="item item-icon-left item-icon-right" href="#" data-desc="madrid" data-city="madrid">
+	<i class="icon ion-ios-location"></i>madrid
+	<i class="icon ion-ios-close-outline remove" id="1"></i></a>
+</li>
+</ul> -->
+</div>
+</ion-content>
+</div>
+
+</div>
+
+
+<!-- 	header dark - light -->
+<header class="bar bar-header bar-light" 
+	style="	background-color: transparent !important; 
+			border: 1px solid transparent !important; 
+      color: inherit !important;">
+
+<button id="geobutton" class="button button-icon icon ion-ios-location"></button>
+  <div class="h1 title" id="city">?</div>
+<div class="buttons buttons-right" >
+	<button class="button button-icon icon ion-search" id="basic-modal2"></button>
+	<button class="button button-icon icon ion-gear-a" id="basic-modal"></button>
+</div>
+</header>
+
+<!-- contenido -->
+<ion-content class="padding scroll-content has-header">
+<div class="contenido">
+
+<div id="current-weather">
+<h5 id="condicion">?</h5>
+
+<div id="img2"></div>
+  <!-- <i class="icon icon-01d"></i> -->
+  <!-- <img class="svg" src="icons/01d.png" width="150"></div> -->
+  <h5>
+    <span id="temp-hi"><i class="icon ion-arrow-up-c"></i> 
+    <span id="temp-hi-t">?</span>°</span>
+    <span id="temp-lo"><i class="icon ion-arrow-down-c"></i> 
+    <span id="temp-lo-t">?</span>°</span>
+  </h5>
+  <h1 class="current-temp"><span id="current-temp">?</span>°</h1>
+<!--   <h5>Luna : <span id="luna_ilum"></span>%<br /><span id="luna_desc"></span></h5> -->
+</div>
+
+<div class="weather-box">
+<h4 class="title">Detalles</h4>
+
+<table style="width: 95%" class="todayInDetails"><tbody>
+<tr>
+  <td rowspan="6" style="text-align: center; border: 0;vertical-align: middle;">
+  <i class="wicon wfore" id="laluna"></i><br/>
+  <span id="faseluna"></span>
+  </td><td></td>
+</tr>
+
+<tr><td class="row2"><span class="coleft">Humedad :</span>
+<span class="colright"><span id="humedad">?</span> %</span></td></tr>
+<tr><td class="row2"><span class="coleft">Viento :</span>
+<span class="colright"><span id="viento">?</span> km/h</span></td></tr>
+<tr><td class="row2"><span class="coleft">Presión :</span>
+<span class="colright"><span id="presion">?</span> mba</span></td></tr>
+<tr><td class="row2"><span class="coleft">Precipitación :</span>
+<span class="colright"><span id="precip">?</span> %</span></td></tr>
+</tbody></table>
+<!-- <div class="row">
+    <div class="col"><span>Humedad : </span></div>
+    <div class="col"><span id="humedad">?°</span> %</div>
+</div>
+<div class="row">
+    <div class="col"><span>Viento : </span></div>
+    <div class="col"><span id="viento">?°</span> km/h</div>
+</div>
+<div class="row">
+    <div class="col"><span>Presion : </span></div>
+    <div class="col"><span id="presion">?°</span> mba</div>
+</div>
+<div class="row">
+    <div class="col"><span>Precipitación : </span></div>
+    <div class="col"><span id="precip">?</span> %</div>
+</div> -->
+
+</div>	
+
+<div class="weather-box">
+	<h4 class="title">Forecast</h4>
+	<span id="five-day">
+<ul>
+	<li class="row">
+  <div class="col"><span>lun</span></div><div class="col">
+  <img src="icon-v4/partlycloudy.svg" width="50">
+  </div><div class="col">
+	 <span class="temp-high">--°</span>
+	 <span class="temp-low">--°</span>
+	</div></li>
+
+  <li class="row">
+  <div class="col"><span>lun</span></div><div class="col">
+  <img src="icon-v4/partlycloudy.svg" width="50">
+  </div><div class="col">
+   <span class="temp-high">--°</span>
+   <span class="temp-low">--°</span>
+  </div></li>
+
+  <li class="row">
+  <div class="col"><span>lun</span></div><div class="col">
+  <img src="icon-v4/partlycloudy.svg" width="50">
+  </div><div class="col">
+   <span class="temp-high">--°</span>
+   <span class="temp-low">--°</span>
+  </div></li>
+	</ul>
+
+	</span>
+</div>
+
+<!-- footer -->
+<div class="col" style="text-align: center;">
+<span id="sol">?</span></div>
+<div class="col" style="text-align: center;">
+<span id="fechita">?</span></div>
+<div class="col" style="text-align: center;">
+	<span class="">powered by : <a href="map-weather.html">openweathermap</a></span>
+</div>
+
+
+</div>
+</ion-content>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/moment-with-locales.min.js"></script>
+<script src="js/openwetm.js"></script>
+</body>
+</html>

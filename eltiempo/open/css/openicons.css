@@ -1,0 +1,20 @@
+/* openweathermap */
+.icon-01d:before {content: "\f00d";}
+.icon-02d:before {content: "\f002";}
+.icon-03d:before {content: "\f041";}
+.icon-04d:before {content: "\f013";}
+.icon-09d:before {content: "\f01a";}
+.icon-10d:before {content: "\f008";}
+.icon-11d:before {content: "\f01e";}/*f010*/
+.icon-13d:before {content: "\f01b";}
+.icon-50d:before {content: "\f003";}
+
+.icon-01n:before {content: "\f02e";}
+.icon-02n:before {content: "\f086";}
+.icon-03n:before {content: "\f041";}
+.icon-04n:before {content: "\f013";}
+.icon-09n:before {content: "\f01a";}
+.icon-10n:before {content: "\f028";}
+.icon-11n:before {content: "\f01e";}/*f02d*/
+.icon-13n:before {content: "\f01b";}
+.icon-50n:before {content: "\f04a";}
