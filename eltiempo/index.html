@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>prueba accuweather javascript</title>
+<script src="https://use.fontawesome.com/ffdde8e343.js"></script>
+<style>
+@font-face {
+  font-family: "digital";
+  src: url("fonts/digital.ttf") format('truetype');
+}
+html,body {height: 100%;background-color: black;color: red;font-family: sans-serif;}
+
+.content {
+    position: relative;width: 100%;height: 100%;text-shadow: 0 0 1rem red;
+}
+.title {
+    position: absolute;left: 50%;top: 50%;
+
+    -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+
+    /*color: #B0BEC5;*/
+    font-weight: 300;
+    font-family: 'digital', sans-serif;
+    font-size: 25vw;
+}
+
+#hora {
+  color: inherit;
+  text-shadow: 0 0 1rem inherit;
+}
+.verde{color: inherit;
+  text-shadow: 0 0 1rem inherit;}
+
+</style>
+</head>
+<body>
+
+<label for="city">City</label>
+<input type="text" id="weather_city" class="buscar" name="city" onkeyup="milugar(this.value);"/>
+<button type="submit" id="botonbuscar">Change</button>
+
+<img src="" alt="imagen condicion tiempo" id="myImg" style="width: 50px;">
+
+<div id="demo" class="verde"><h1>Ciudad, ES</h1><i class="fa fa-gear"></i></div>
+<div id="demo2" class="verde"><span>21° </span> / <span>Nublado</span></div>
+
+<div class="content">
+<span id="hora" class="title"></span>
+</div>
+
+
+
+<script src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+<script>
+function hora(){
+  var horalocal = moment().format('HH:mm:ss');
+  document.getElementById("hora").innerHTML= horalocal + '';
+}setInterval(hora,1000);
+
+
+document.getElementById('botonbuscar').addEventListener("click", myFunction);
+function myFunction(){
+  var text = document.querySelector('.buscar').value;
+  milugar(text);
+}
+//milugar('barcelona');
+
+var folder = "sym9/";
+
+
+function milugar(ellugar){
+
+var conexion = new XMLHttpRequest();
+var url = "http://apidev.accuweather.com/locations/v1/search?q="+ ellugar + "&language=es&apikey=ff1b463d98fb47af848ea2843ec5c925";
+
+//var url = "http://apidev.accuweather.com/locations/v1/search?q=" + freetext + "&language=" + language + "&apikey=" + apiKey;
+// http://apidev.accuweather.com/locations/v1/search?q=el%20masnou&language=es&apikey=ff1b463d98fb47af848ea2843ec5c925
+
+conexion.onreadystatechange = function() {
+    if (conexion.readyState == 4 && conexion.status == 200) {
+        var myArr = JSON.parse(conexion.responseText);
+        myFunction(myArr);
+    }
+};
+conexion.open("GET", url, true);
+conexion.send();
+  
+  function myFunction(data) {
+  
+  var cityKey = data[0].Key;
+  
+  html = '<h1>' + data[0].LocalizedName+ ", "+ data[0].Country.ID + '</h1>';
+  //html += '<h1>' + cityKey + '</h1>';
+
+  document.getElementById("demo").innerHTML = html;
+   milugar2(cityKey); 
+  }
+  
+}
+
+function milugar2(ellugar){
+  
+  var conexion = new XMLHttpRequest();
+  var url2 = "http://apidev.accuweather.com/currentconditions/v1/"+ ellugar +".json?language=es&details=true&getphotos=true&apikey=ff1b463d98fb47af848ea2843ec5c925";
+  
+  conexion.onreadystatechange = function() {
+    if (conexion.readyState == 4 && conexion.status == 200) {
+        var myArr2 = JSON.parse(conexion.responseText);
+        myFunction2(myArr2);
+    }
+};
+  conexion.open("GET", url2, true);
+  conexion.send();
+
+  function myFunction2(data) {
+
+  var wicon1 = data[0].WeatherIcon;
+  if ( wicon1 < 10 ){
+      // var wIcon = 'http://apidev.accuweather.com/developers/Media/Default/WeatherIcons/0'+wicon1+'-s.png';
+      var wIcon = folder+'0'+wicon1+'.png';
+  }else { var wIcon = folder+wicon1+'.png'; }
+
+  document.getElementById("myImg").src = wIcon;
+
+  html = '<span>' + data[0].Temperature.Metric.Value +'° </span> / ';
+  html += '<span>' + data[0].WeatherText + '</span>';
+  //html += '<h1>' + data[0].WeatherIcon + '</h1>';
+
+    document.getElementById("demo2").innerHTML = html;
+  }
+  
+}
+</script>
+</body>
+</html>

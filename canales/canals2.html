@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- <link rel="stylesheet" href="css/elements.css" media="screen"> -->
+
+<style>
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+.gridcontent {
+    border: 1px solid #484542;
+    /*background: hsla(0, 0%, 0%, 0.15);*/
+    position: relative;
+    width: 1102px;
+    height: 550px;
+    margin: 0 auto;
+}
+.element-item > * {
+    margin: 0;
+    padding: 0;
+}
+.element-item {
+    position: relative;
+    float: left;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    padding: 10px;
+    /*background: #888;*/
+    border: 1px solid #484542;
+    /*color: #262524;*/
+    color: #000000;
+}
+.element-item .name {
+    position: absolute;
+    left: 10px;
+    top: 60px;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 0.8em;
+    font-weight: normal;
+}
+.element-item .symbol {
+    position: absolute;
+    left: 10px;
+    top: 0px;
+    font-size: 2.8em;
+    font-weight: bold;
+    color: black;
+}
+.element-item .number {
+    position: absolute;
+    right: 8px;
+    top: 5px;
+    font-weight: bold;
+}
+.element-item .weight {
+    position: absolute;
+    left: 10px;
+    top: 76px;
+    font-size: 0.8em;
+}
+.element-item.transition {
+    background: #0F8;
+    background: hsl( 144, 100%, 50%);
+}
+</style>
+</head>
+
+<body>
+
+	<!-- contenido -->
+	<div class="gridcontent">
+      <div class="element-item" data-category="transition">
+        <h5 class="name">La</h5>
+        <p class="weight">TVE1</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logotve1.jpg">
+        <p class="number">31</p>
+      </div>
+      <div class="element-item" data-category="transition">
+        <h5 class="name">La</h5>
+        <p class="weight">TVE1 HD</p>
+        <img src="canales/logola1hd.jpg" class="icono">
+        <p class="number">33</p>
+      </div>
+      <div class="element-item metalloid " data-category="metalloid">
+        <h5 class="name">La</h5>
+        <p class="weight">2</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logotve2.jpg">
+        <p class="number">34</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name">Canal</h5>
+        <p class="weight">TV3</p>
+        <img src="canales/logotv3cat.jpg">
+        <p class="number">70</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name">Canal</h5>
+        <p class="weight">TV3</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logotv3hd.jpg" class="icono">
+        <p class="number">72</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name">Canal</h5>
+        <p class="weight">Cuatro</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logocuatro.jpg" class="icono">
+        <p class="number">17</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name">Canal</h5>
+        <p class="weight">Cuatro HD</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logocuatrohd.jpg" class="icono">
+        <p class="number">18</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name"></h5>
+        <p class="weight">Tele 5</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logotelecinco.jpg" class="icono">
+        <p class="number">18</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name"></h5>
+        <p class="weight">Tele 5 HD</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logotelecincohd.jpg" class="icono">
+        <p class="number">18</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name"></h5>
+        <p class="weight">Antena3</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logoantena3.jpg" class="icono">
+        <p class="number">18</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name"></h5>
+        <p class="weight">Antena3 HD</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logoantena3hd.jpg" class="icono">
+        <p class="number">18</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name"></h5>
+        <p class="weight">NEOX</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logoantena3hd.jpg" class="icono">
+        <p class="number">18</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name"></h5>
+        <p class="weight">NOVA</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logoantena3hd.jpg" class="icono">
+        <p class="number">18</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name"></h5>
+        <p class="weight">La Sexta</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logoantena3hd.jpg" class="icono">
+        <p class="number">18</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name"></h5>
+        <p class="weight">La Sexta HD</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logoantena3hd.jpg" class="icono">
+        <p class="number">18</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name"></h5>
+        <p class="weight">Antena3 HD</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logoantena3hd.jpg" class="icono">
+        <p class="number">18</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name"></h5>
+        <p class="weight">Energy</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logoantena3hd.jpg" class="icono">
+        <p class="number">18</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name"></h5>
+        <p class="weight">Discovery MAX</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logoantena3hd.jpg" class="icono">
+        <p class="number">18</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name">Paramount</h5>
+        <p class="weight">Channel</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logoantena3hd.jpg" class="icono">
+        <p class="number">18</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name"></h5>
+        <p class="weight">MEGA</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logoantena3hd.jpg" class="icono">
+        <p class="number">18</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name">Disney</h5>
+        <p class="weight">Channel</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logoantena3hd.jpg" class="icono">
+        <p class="number">18</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name"></h5>
+        <p class="weight">CLAN</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logoantena3hd.jpg" class="icono">
+        <p class="number">18</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name"></h5>
+        <p class="weight">Boing</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logoantena3hd.jpg" class="icono">
+        <p class="number">18</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name"></h5>
+        <p class="weight">FDF</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logoantena3hd.jpg" class="icono">
+        <p class="number">18</p>
+      </div>
+      <div class="element-item post-transition metal " data-category="post-transition">
+        <h5 class="name"></h5>
+        <p class="weight">Divinity</p>
+        <img src="http://www.tdt1.com/imagenes/canales/logoantena3hd.jpg" class="icono">
+        <p class="number">18</p>
+      </div>
+      
+  </div>
+
+</body>
+</html>

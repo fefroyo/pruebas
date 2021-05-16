@@ -1,0 +1,335 @@
+<!doctype html>
+<html ng-app="miApp">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+   	<meta name="viewport" content="width=device-width, initial-scale=1">
+   	<link rel="apple-touch-icon" href="img/logoicon.png">
+    <link rel="shortcut icon" href="img/logoicon.png">
+  <title>Channels con angular</title>
+  <!-- Styling -->
+  <!-- <link rel="stylesheet" href="css/style.css"> -->
+<style>
+* { margin:0;padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+/* search bar */
+
+.sb-search {
+	position: relative;
+	width: 0%;
+	min-width: 60px;
+	height: 60px;
+	float: right;
+	overflow: hidden;
+
+	-webkit-transition: width 0.3s;
+	-moz-transition: width 0.3s;
+	transition: width 0.3s;
+
+	-webkit-backface-visibility: hidden;
+}
+.sb-search-input {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
+	outline: none;
+	background: #fff;
+	width: 100%;
+	height: 60px;
+	margin: 0;
+	z-index: 10;
+	padding: 20px 65px 20px 20px;
+	font-family: inherit;
+	font-size: 20px;
+	color: #2c3e50;
+}
+
+input[type="search"].sb-search-input {
+	-webkit-appearance: none;
+	-webkit-border-radius: 0px;
+}
+.sb-search-input::-webkit-input-placeholder {
+	color: #efb480;
+}
+
+.sb-search-input:-moz-placeholder {
+	color: #efb480;
+}
+
+.sb-search-input::-moz-placeholder {
+	color: #efb480;
+}
+
+.sb-search-input:-ms-input-placeholder {
+	color: #efb480;
+}
+.sb-icon-search,
+.sb-search-submit  {
+	width: 60px;
+	height: 60px;
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 0;
+	margin: 0;
+	line-height: 60px;
+	text-align: center;
+	cursor: pointer;
+}
+.sb-search-submit {
+	background: #fff; /* IE needs this */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */
+    filter: alpha(opacity=0); /* IE 5-7 */
+    opacity: 0;
+	color: transparent;
+	border: none;
+	outline: none;
+	z-index: -1;
+}
+.sb-icon-search {
+	color: #fff;
+	background: #e67e22;
+	z-index: 90;
+	font-size: 22px;
+	*font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	-webkit-font-smoothing: antialiased;
+}
+
+/*.sb-icon-search:before {
+	content: "\e000";
+}*/
+.sb-search.sb-search-open,
+.no-js .sb-search {
+	width: 100%;
+}
+.sb-search.sb-search-open .sb-icon-search,
+.no-js .sb-search .sb-icon-search {
+	background: #da6d0d;
+	color: #fff;
+	z-index: 11;
+}
+.sb-search.sb-search-open .sb-search-submit,
+.no-js .sb-search .sb-search-submit {
+	z-index: 90;
+}
+
+
+/* grid contenido 
+_____________________________________*/
+.gridcontent {
+    /*border: 1px solid #484542;*/
+    /*background: hsla(0, 0%, 0%, 0.15);*/
+    position: relative;
+    width: 80%;
+    /*width: 1102px;*/
+    height: 550px;
+    margin: 0 auto;
+}
+.element-item > * {
+    margin: 0;
+    padding: 0;
+}
+.element-item {
+    position: relative;
+    float: left;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    padding: 10px;
+    /*background: #888;*/
+    border: 1px solid #484542;
+    /*color: #262524;*/
+    color: #000000;
+}
+.element-item .name {
+    position: absolute;
+    left: 10px;
+    top: 60px;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 0.8em;
+    font-weight: normal;
+}
+.element-item .symbol {
+    position: absolute;
+    left: 10px;
+    top: 0px;
+    font-size: 2.8em;
+    font-weight: bold;
+    color: black;
+}
+.element-item .number {
+    position: absolute;
+    right: 8px;
+    top: 5px;
+    font-weight: bold;
+}
+.element-item .weight {
+    position: absolute;
+    left: 10px;
+    top: 76px;
+    font-size: 0.8em;
+}
+.element-item.transition {
+    background: #0F8;
+    background: hsl( 144, 100%, 50%);
+}
+</style>
+  
+</head>
+<body>
+
+<div ng-controller='ctrl'>
+
+	<div id="sb-search" class="sb-search" style="margin-top: -64px;">
+		<form>
+			<input class="sb-search-input" data-ng-model="search" placeholder="Buscar canal..." type="search" value="" name="search" id="search" />
+			<input class="sb-search-submit" type="submit" value="" />
+			<span class="sb-icon-search"><svg style="width:60px;height:60px" viewBox="0 0 24 24">
+    <path fill="#fff" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg></span>
+
+		</form>
+	</div>
+
+	<div class="gridcontent" style="margin-top: 64px;">
+    	
+      <a href="{{canal.url2}}" class="element-item" ng-repeat="canal in items | filter: search">
+        <h5 class="name">{{canal.name}}</h5>
+        <p class="weight">{{canal.weight}}</p>
+        <img src="{{canal.url}}" width="50" height="50">
+        <p class="number">{{canal.number}}</p>
+      </a>
+		
+    </div>
+	
+
+</div>
+
+<!-- Angular -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+<script src="misearch.js"></script>
+<script>
+	new UISearch( document.getElementById( 'sb-search' ) );
+</script>
+<script>
+angular.module("miApp", [])
+
+.controller('ctrl', function($scope) {
+    
+    $scope.items = [
+
+      {name:'La', weight:'TVE1', number:'33', color:'teal800', url: 'logotve1.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/la-1'},
+      {name:'La', weight:'TVE1 HD', number:'34', color:'teal800', url: 'logola1hd.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/la-1'},
+      {name:'La', weight:'dos', number:'35', color:'teal800', url: 'logotve2.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/la-2'},
+      {name:'La', weight:'2 HD', number:'66', color:'teal800', url: 'logotve2.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/la-2'},
+      {name:'Canal', weight:'TV3', number:'63', color:'teal800', url: 'logotv3cat.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/tv3'},
+      {name:'Canal', weight:'TV3 HD', number:'64', color:'teal800', url: 'logotv3hd.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/tv3'},
+      {name:'Canal', weight:'TV3 HD definitiu', number:'71', color:'teal800', url: 'logotv3hd.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/tv3'},
+      {name:'Canal', weight:'Super3/33', number:'57', color:'teal800', url: 'logosuper3-33.gif', url2: 'http://www.programacion-tv.es/hoy/canal/33'},
+      {name:'Canal', weight:'Cuatro', number:'17', color:'teal800', url: 'logocuatro.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/cuatro'},
+      {name:'Canal', weight:'Cuatro HD', number:'18', color:'teal800', url: 'logocuatrohd.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/cuatro'},
+      {name:'Canal', weight:'Telecinco', number:'60', color:'teal800', url: 'logotelecinco.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/telecinco'},
+      {name:'Canal', weight:'Telecinco HD', number:'61', color:'teal800', url: 'logotelecincohd.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/telecinco'},
+      {name:'Canal', weight:'Antena3', number:'5', color:'teal800', url: 'logoantena3.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/antena-3'},
+      {name:'Canal', weight:'Antena3 HD', number:'6', color:'teal800', url: 'logoantena3hd.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/antena-3'},
+      {name:'Canal', weight:'Atreseries HD', number:'7', color:'teal800', url: 'logoantena3hd.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/antena-3'},
+      {name:'Canal', weight:'Neox', number:'41', color:'teal800', url: 'logoneox.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/neox'},
+      {name:'Canal', weight:'Nova', number:'42', color:'teal800', url: 'logonova.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/nova'},
+      {name:'La', weight:'Sexta', number:'36', color:'teal800', url: 'logolasexta.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/lasexta' },
+      {name:'La', weight:'Sexta HD', number:'37', color:'teal800', url: 'logolasextahd.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/lasexta'},
+      {name:'Canal', weight:'Energy', number:'23', color:'teal800', url: 'logoenergy.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/energy'},
+      {name:'Discovery', weight:'MAX', number:'22', color:'teal800', url: 'logodiscoverymax.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/discovery-max'},
+      {name:'Paramount', weight:'Channel', number:'44', color:'teal800', url: 'logoparamountchannel.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/paramount-channel'},
+      {name:'Canal', weight:'MEGA', number:'38', color:'teal800', url: 'logomega.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/mega'},
+      {name:'Disney', weight:'Channel', number:'19', color:'teal800', url: 'logodisneychannel.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/disney-channel'},
+      {name:'Canal', weight:'CLAN', number:'15', color:'teal800', url: 'logoclantve.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/clan-tve'},
+      {name:'Canal', weight:'CLAN HD', number:'67', color:'teal800', url: 'logoclantve.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/clan-tve'},
+      {name:'Canal', weight:'Boing', number:'10', color:'teal800', url: 'logoboing.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/boing'},
+      {name:'Canal', weight:'FDF', number:'27', color:'teal800', url: 'logofdf.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/fdf-telecinco'},
+      {name:'Canal', weight:'Divinity', number:'20', color:'teal800', url: 'logodivinity.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/divinity'},
+      {name:'Canal', weight:'24h', number:'2', color:'teal800', url: 'logotve24h.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/canal-24-horas'},
+      {name:'Canal', weight:'3/24h', number:'3', color:'teal800', url: 'logo324.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/324h'},
+      {name:'Cyltv', weight:'Salamanca', number:'00', color:'mdc-bg-pink-200', url: 'img/324.png', url2: 'http://www.programacion-tv.es/hoy/canal/cyltv'},
+      {name:'teledeporte', weight:'tdp', number:'58', color:'teal800', url: 'logoteledeporte.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/teledeporte'},
+      {name:'teledeporte', weight:'tdp HD', number:'59', color:'teal800', url: 'logotdphd.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/teledeporte'},
+      {name:'Canal', weight:'mola TV', number:'37', color:'teal800', url: 'logomolatv.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/molatv'},
+      {name:'Canal', weight:'8 TV', number:'4', color:'teal800', url: '8tv.png', url2: 'http://www.programacion-tv.es/hoy/canal/la-8'},
+      {name:'Canal', weight:'TEN', number:'62', color:'teal800', url: 'logo13tv.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/13tv'},
+      {name:'Canal', weight:'13 TV', number:'1', color:'teal800', url: 'logo13tv.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/13tv'},
+      {name:'Canal', weight:'BTV', number:'12', color:'teal800', url: 'logobtv.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/btv'},
+      {name:'Música', weight:'RAC 105', number:'47', color:'teal800', url: 'logorac105.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/rac105'},
+      {name:'Música', weight:'KSS FM', number:'30', color:'teal800', url: 'logokissfm.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/kissfm'},
+      {name:'Canal', weight:'Badalona', number:'84', color:'teal800', url: 'logotvbadalona.jpg', url2: 'http://www.programacion-tv.es/hoy/canal/badalona'},
+    ];
+
+
+    // filtrar acentos
+    function removeAccents(value) {
+        return value
+            .replace(/á/g, 'a')            
+            .replace(/é/g, 'e')
+            .replace(/í/g, 'i')
+            .replace(/ó/g, 'o')
+            .replace(/ú/g, 'u');
+    }
+    
+    $scope.ignoreAccents = function(item) {               
+        if (!$scope.search)
+            return true;
+
+        var fullName = item.id + ' ';
+        var text = removeAccents(fullName.toLowerCase());
+        var search = removeAccents($scope.search.toLowerCase());
+        return text.indexOf(search) > -1;
+    };
+
+})
+
+.filter('filteri18n',['$filter',function($filter) {
+  var filterFn=$filter('filter');
+   
+  /** Transforma el texto quitando todos los acentos diéresis, etc. **/
+  function normalize(texto) {
+    texto = texto.replace(/[áàäâ]/g, "a");
+    texto = texto.replace(/[éèëê]/g, "e");
+    texto = texto.replace(/[íìïî]/g, "i");
+    texto = texto.replace(/[óòôö]/g, "o");
+    texto = texto.replace(/[úùüü]/g, "u");
+    texto = texto.toUpperCase();
+    return texto;
+  }
+
+  /** Esta función es el comparator en el filter **/
+  function comparator(actual, expected) {
+      if (normalize(actual).indexOf(normalize(expected))>=0) {
+        return true;
+      } else {
+        return false;
+      }
+  }
+
+  /** Este es realmente el filtro **/
+  function filteri18n(array,expression) {
+    //Lo único que hace es llamar al filter original pero pasado
+    //la nueva función de comparator
+    return filterFn(array,expression,comparator)
+  }
+  return filteri18n;
+   
+}])
+</script>
+
+</body>
+</html>
