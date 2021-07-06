@@ -20,65 +20,8 @@
   </span>
 </div>
 
-<!-- <button type="button" class="btn btn-default" v-on:click="sortBy('Titulo')">Titulo</button>
-<button type="button" class="btn btn-default" v-on:click="sortBy('Texto')">Texto</button>
-<button type="button" class="btn btn-default" v-on:click="sortBy('Fecha')">fecha</button> -->
-
 <div class="col-xs-12 col-sm-12">
-
-<!-- <label for="buskemon">Buscar: </label>
-<input type="search" class="form-control" name="buskemon" v-model="buscar" /> -->
-
-
-<!-- <form @submit.prevent="agregarTarea(nuevaTarea)" class="form">
-<div class="input-group">
-  <input v-model="nuevaTarea" type="text" class="form-control">
-  <span class="input-group-btn">
-  <button class="btn btn-default" type="submit">
-    <span class="glyphicon glyphicon-plus"></span> Añadir tarea</button>
-  </span>
-</div>
-</form> -->
-
-<div id="results"></div>
-
-
-<!--  <ul class="list-group">
-            <li v-for="poke in pokemons | orderBy sortKey order | filterBy buscar"
-                class="list-group-item clearfix">
-                <h3>{{ poke.Titulo }}</h3>
-                <p class="lead">{{ poke.Texto }}</p>
-                
-                <input v-model="poke.Titulo"
-                       v-show="editandoTarea === $index"
-                       @blur="editandoTarea = null, editarTarea(poke)"
-                       type="text" class="form-control">
-                <input v-model="poke.Texto"
-                       v-show="editandoTarea === $index"
-                       @blur="editandoTarea = null, editarTarea(poke)"
-                       type="text" class="form-control">
-                <div>
-                    <span class="pull-right">
-                        <button @click="editandoTarea = $index"
-                                class="btn btn-default btn-xs">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </button>
-                        <button v-show="editandoTarea === $index"
-                                @click="editandoTarea = null, editarTarea(poke)"
-                                class="btn btn-default btn-xs">
-                            <span class="glyphicon glyphicon-floppy-saved"></span>
-                        </button>
-
-                        <button @click="eliminarTarea(poke)"
-                                class="btn btn-danger btn-xs">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </button>
-
-                    </span>
-                </div>
-
-            </li>
-        </ul> -->
+	<div id="results"></div>
 </div>
 
 
@@ -132,7 +75,8 @@ for (i = 0; i < misnotas.length; i++) {
 	nota += '<li class="list-group-item clearfix">'+
 	'<h3>'+misnotas[i].Titulo+'</h3>'+
 	'<p class="lead">'+misnotas[i].Descripcion+'</p>'+
-	'<a href="'+misnotas[i].Link+'">link web</a>'+
+	//'<a href="'+misnotas[i].Link+'">link web</a>'+
+	'<form><button formaction="'+misnotas[i].Link+'" class="btn btn-danger btn-xl">CLICKAR</button></form>'+	
 	'</li>';
 }			
 	nota += '</ul>';
