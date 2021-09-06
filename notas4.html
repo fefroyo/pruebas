@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap" rel="stylesheet">
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css'>
+
+<style>
+.input-group .form-control {
+  margin: 0 auto;
+  width: 30%;
+  float: none;
+  margin-bottom:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div style="text-align: center;padding: 15px;">
+<h2>Notas :</h2></div>
+
+<div class="input-group">
+  <input type="search" class="form-control" id="busca" />
+  <span class="input-group-btn">
+    <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+  </span>
+</div>
+
+<!-- <button type="button" class="btn btn-default" v-on:click="sortBy('Titulo')">Titulo</button>
+<button type="button" class="btn btn-default" v-on:click="sortBy('Texto')">Texto</button>
+<button type="button" class="btn btn-default" v-on:click="sortBy('Fecha')">fecha</button> -->
+
+<div class="col-xs-12 col-sm-12">
+
+
+  <div id="results"></div>
+
+
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#busca").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("ul li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+
+var misnotas = [
+  {
+    "id": 1,
+    "Titulo": "Asamblea 2021",
+    "Descripcion": "poderos gracias a la fe",
+    "Link": "https://www.jw.org/es/biblioteca/videos/#es/categories/2021Convention"
+  },
+  {
+    "id": 2,
+    "Titulo": "stream JW",
+    "Descripcion": "stream jw discursos",
+    "Link": "https://studio.stream.jw.org/t/6b005966bd55a9d99f72308c9fe9885aec0188fb751556eccd729f1865e23b57"
+  },
+  {
+    "id": 3,
+    "Titulo": "sygic android",
+    "Descripcion": "Sygic 20.5.1_SHAPK .apk - para car radio android",
+    "Link": "https://mega.nz/file/8tYgWTSZ#efLI-gIkckvsl7n8UWyO3DicotpIss1WBhiut812kFw"
+  },
+  {
+    "id": 4,
+    "Titulo": "mapas sygic",
+    "Descripcion": "descargar mapas sygic, para car radio android",
+    "Link": "https://mega.nz/folder/kwhBkSjK#Qmg8hiLhPRjkcggEQHUtdw"
+  },
+  {
+    "id": 5,
+    "Titulo": "radares gps",
+    "Descripcion": "descagar radares acutalizados",
+    "Link": "https://www.todo-poi.es/radar/sygic-aura-avisador-radares-gps.php"
+  },
+  {
+    "id": 6,
+    "Titulo": "sygic apk mega",
+    "Descripcion": "Sygic 20.5.1_SHAPK .apk - para car radio android",
+    "Link": "https://mega.nz/file/pXplwSyT#Cm4QTzzsLf1jt8T3wutyu2IyOerUp_HjLXR4vEYjNPA"
+  },
+  {
+    "id": 7,
+    "Titulo": "mapas sygic mega",
+    "Descripcion": "mapas sygic mega, andorra espanya, portugal",
+    "Link": "https://mega.nz/file/YawlEK4K#hsi7KAtFpFruV25h4G1tHfvjTDGg_4foEoqmPMUVjwU"
+  },
+  {
+    "id": 8,
+    "Titulo": "mapas IGO primo",
+    "Descripcion": "igo primo 9.18",
+    "Link": "https://mega.nz/file/jsQwwBYD#z0mz9E8kd6tePn2KE2kE6e5ciJJ-GTsnMlxAyJ0BJaA"
+  },
+  {
+    "id": 9,
+    "Titulo": "pantalla IGO",
+    "Descripcion": "resolucion 320 pcloud",
+    "Link": "http://e.pc.cd/Sk2otalK"
+  },
+  {
+    "id": 10,
+    "Titulo": "pantalla IGO",
+    "Descripcion": "resolucion 320 mega",
+    "Link": "https://mega.nz/file/b1oXDCqS#m7MpArsy4nRJTj17A_2DDECDSvho_MK2uT8NKoT0Nzw"
+  },
+  {
+    "id": 11,
+    "Titulo": "voces primo",
+    "Descripcion": "voces castellano - https://www.forokeys.com/foro/gps-integrados/voces-en-espanol-igo-nextgen-9-18-27-687519/",
+    "Link": "https://e.pcloud.link/publink/show?code=Kt2otalK"
+  }
+];
+
+
+// datos de google excel
+//console.log(misnotas)
+
+//$.getJSON(notas4, function(data) {
+
+  // var entry = data.feed.entry;
+  // var grouped = [];
+
+	 //  entry.forEach(function (a) {
+
+		//   grouped.push({ 
+		//       id: a.gsx$id.$t,
+		//       Titulo: a.gsx$titulo.$t,
+		//       Descripcion: a.gsx$descripcion.$t,
+		//       Link: a.gsx$link.$t,
+		//   });
+	 //  });
+
+ 
+
+//var notas1 = JSON.stringify(grouped);
+//var misnotas = JSON.parse(notas4);
+
+//var search = $(".search-input");
+// console.log(pokedex)
+
+
+var nota = '<ul class="list-group">';
+var local = "location.href='+misnotas[i].Link+'";
+	
+for (i = 0; i < misnotas.length; i++) {
+
+	nota += '<li class="list-group-item clearfix">'+
+	'<h3>'+misnotas[i].Titulo+'</h3>'+
+	'<p class="lead">'+misnotas[i].Descripcion+'</p>'+
+	//'<a href="'+misnotas[i].Link+'">link web</a>'+
+  '<form><button formaction="'+misnotas[i].Link+'" class="btn btn-danger btn-xl">DESCARGAR</button></form>'+
+	'</li>';
+}			
+	nota += '</ul>';
+
+  document.getElementById('results').innerHTML = nota;
+
+//});
+</script>
+</body>
+</html>
