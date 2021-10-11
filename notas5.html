@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap" rel="stylesheet">
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css'>
+</head>
+
+<body>
+
+<div style="text-align: center;padding: 15px;">
+<h2>Notas :</h2></div>
+
+<div class="input-group">
+  <input type="search" class="form-control" id="busca" />
+  <span class="input-group-btn">
+    <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+  </span>
+</div>
+
+
+<div class="col-xs-12 col-sm-12">
+  <div id="results"></div>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#busca").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("ul li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+
+// datos de google excel
+let url = 'https://api.sheety.co/f0416d78dfbf33f6aea3920fde66e82c/datosNotas/notas';
+fetch(url)
+.then((response) => response.json()).then(data => {
+
+  var misnotas = data.notas;
+
+var nota = '<ul class="list-group">';
+var local = "location.href='+misnotas[i].Link+'";
+	
+for (i = 0; i < misnotas.length; i++) {
+
+	nota += '<li class="list-group-item clearfix">'+
+	'<h3>'+misnotas[i].titulo+'</h3>'+
+	'<p class="lead">'+misnotas[i].descripcion+'</p>'+
+	//'<a href="'+misnotas[i].Link+'">link web</a>'+
+  '<form><button formaction="'+misnotas[i].link+'" class="btn btn-danger btn-xl">DESCARGAR</button></form>'+
+	'</li>';
+}			
+	nota += '</ul>';
+
+  document.getElementById('results').innerHTML = nota;
+
+});
+</script>
+</body>
+</html>
