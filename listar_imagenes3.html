@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+<div id="imagenes"></div>
+
+	
+<script>
+var miArray = [ 
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206988G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206971G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206959G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206994G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206973G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206981G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206967G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206975G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206969G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206974G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206976G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206987G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206972G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206963G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206990G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206966G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206983G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206979G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206958G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206977G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206992G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206964G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206965G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206985G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206970G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206984G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206986G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206960G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206961G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206993G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206978G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206962G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206989G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206982G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206968G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206980G.jpg',
+'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206991G.jpg',
+
+];
+
+var lista = '<ul>';
+
+miArray.forEach( function(valor, indice, array) {
+    //console.log("<li>" + indice + valor +"</li>");
+    //lista += '<li>' + indice + valor +'</li>';
+    //'+indice+'</li>
+    lista += '<li><img src="'+valor+'" name="'+indice+'" alt="'+indice+'"></li>';
+});
+
+lista += '</ul>';
+
+document.getElementById('imagenes').innerHTML = lista;
+
+
+
+// https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206988G.jpg
+
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206988G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206971G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206959G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206994G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206973G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206981G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206967G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206975G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206969G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206974G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206976G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206987G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206972G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206963G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206990G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206966G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206983G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206979G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206958G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206977G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206992G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206964G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206965G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206985G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206970G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206984G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206986G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206960G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206961G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206993G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206978G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206962G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206989G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206982G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206968G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206980G.jpg',
+// 'https://images.habimg.com/imgh/1450-3413464/casa-unifamiliar-en-venta-ideal-para-varias-familias-argentona_1450-img3413464-206991G.jpg',
+</script>
+</body>
+</html>
