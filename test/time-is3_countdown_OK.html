@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+	text-align: center;
+	font-family: sans-serif;
+	font-weight: 100;
+}
+h1{
+	font-weight: 100;
+	font-size: 40px;
+	margin: 40px 0px 20px;
+}
+
+.link{margin-top: 40px;}
+a{
+  display: inline-block;
+  color: #fff;
+  font-size: 20px;
+  padding: 20px;
+  background: #f00;
+  /*border-radius: 10px;*/
+  text-decoration: none;
+}
+a:hover{background: #487;}
+
+#clockdiv1{
+	font-family: sans-serif;
+	display: inline-block;
+	font-weight: 100;
+	text-align: center;
+	font-size: 30px;
+}
+
+#clockdiv1 > div{
+	padding: 10px;
+	display: inline-block;
+}
+
+#clockdiv1 div > span{
+	padding: 15px;
+	display: inline-block;
+}
+
+
+#clockdiv{
+	font-family: sans-serif;
+	display: inline-block;
+	font-weight: 100;
+	text-align: center;
+	font-size: 30px;
+}
+
+#clockdiv > div{
+	padding: 10px;
+	display: inline-block;
+}
+
+#clockdiv div > span{
+	padding: 15px;
+	display: inline-block;
+}
+input {border:0;display: inline-block;text-align: center;font-size: 30px;font-weight: 400;}
+
+.smalltext{
+	padding-top: 5px;
+	font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="fecha">fecha</h1>
+<div id="clockdiv1">
+	<div><span class="d"><input type="text" id="d" size="2" onkeyup="this.value" value="25"/></span><div class="smalltext">Dia</div></div>
+	<div><span class="mmes"><input type="text" id="mmes" size="2" value="4"/></span><div class="smalltext">Mes</div></div>
+	<div><span class="h"><input type="text" id="h" size="2" onkeyup="this.value" value="10"/></span><div class="smalltext">Horas</div></div>
+	<div><span class="m"><input type="text" id="m" size="2" onkeyup="this.value" value="00"/></span><div class="smalltext">Minutos</div></div>
+	<div><span class="s">00</span><div class="smalltext">Segundos</div></div>
+</div>
+
+<h1 id="titulo">countdown clock</h1>
+<div id="clockdiv">
+	<div><span class="days"></span><div class="smalltext">Dias</div></div>
+	<div><span class="hours"></span><div class="smalltext">Horas</div></div>
+	<div><span class="minutes"></span><div class="smalltext">Minutos</div></div>
+	<div><span class="seconds"></span><div class="smalltext">Segundos</div></div>
+</div>
+
+<!-- 
+  <div class="link">
+<a href="#" id="link">timestamp</a>
+</div> -->
+
+<script>
+
+var valor = new Date();
+var ddia = document.getElementById("d").value,
+  dmes = document.getElementById("mmes").value,//valor.getMonth()+1,
+  dayo = valor.getFullYear(),
+  dhor = document.getElementById("h").value,
+  dmin = document.getElementById("m").value,
+  secu = document.querySelector('.s').innerHTML;
+// var fecha = new Date(dayo,dmes,ddia,dhor,dmin,secu,0);
+var deadline = dmes+' '+ddia+' '+dayo+' '+dhor+':'+dmin+':'+secu;
+
+//var fecha = new Date(dmes' '+ddia+' '+dayo+' '+ddia+':'); 
+//var fecha = new Date(f); 
+// console.log(fecha.toLocaleString());
+// console.log(f);
+ 
+document.getElementById("fecha").innerHTML = new Date(deadline).toLocaleString(); // new Date(deadline).toLocaleTimeString();
+
+
+//var deadline = 'Dec 25 2016 22:00:00';
+
+//var t2 = Date.parse(deadline) - Date.parse(new Date());
+
+function time_remaining(endtime){
+	var t = Date.parse(endtime) - Date.parse(new Date());
+	var seconds = Math.floor( (t/1000) % 60 );
+	var minutes = Math.floor( (t/1000/60) % 60 );
+	var hours = Math.floor( (t/(1000*60*60)) % 24 );
+	var days = Math.floor( t/(1000*60*60*24) );
+	return {'total':t, 'days':days, 'hours':hours, 'minutes':minutes, 'seconds':seconds};
+}
+function run_clock(id,endtime){
+	var clock = document.getElementById(id);
+	
+	// get spans where our clock numbers are held
+	var days_span = clock.querySelector('.days');
+	var hours_span = clock.querySelector('.hours');
+	var minutes_span = clock.querySelector('.minutes');
+	var seconds_span = clock.querySelector('.seconds');
+
+	function update_clock(){
+		var t = time_remaining(endtime);
+		
+		// update the numbers in each part of the clock
+		days_span.innerHTML = t.days;
+		hours_span.innerHTML = ('0' + t.hours).slice(-2);
+		minutes_span.innerHTML = ('0' + t.minutes).slice(-2);
+		seconds_span.innerHTML = ('0' + t.seconds).slice(-2);
+		document.getElementById("titulo").innerHTML = Date.parse(deadline);
+		if(t.total<=0){ clearInterval(timeinterval); }
+	}
+	update_clock();
+	var timeinterval = setInterval(update_clock,1000);
+}
+run_clock('clockdiv',deadline);
+</script>
+</body>
+</html>

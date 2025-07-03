@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.letra{font-size:36px}
+#formatted_time {width: 450px;}
+</style>
+</head>
+
+<body>
+
+<!-- <a href="https://time.is/Barcelona" id="time_is_link" rel="nofollow">
+  Hora local en Barcelona:</a>
+<span id="Barcelona_z718 letra"></span>
+<br />
+UTC time: <span id="UTC_za00"></span><br/>
+New York: <span id="New_York_z161"></span><br/>
+Tokyo: <span id="Tokyo_z444"></span><br/>
+Ecuador: <span id="Ecuador_z139"></span><br/> -->
+
+<div id="twd"></div><div id="twd1"></div><div id="twd2"></div>
+<h1><span id="demo"></span> - <span id="demo2"></span></h1> 
+<div id="cvwr" class="w90">
+<h1>Unix timestamp converter</h1>
+
+<!-- <div class="inputframe"> -->
+
+<form action="." method="GET" onsubmit="return true">
+<div style="margin-right:40px">
+<label>Unix time</label>
+<input name="unix_time" id="unix_time" value="1481283990" onkeyup="from_unix(this.value)" class="txtin blr mout" onfocus="bfc=0" onblur="bfc=1" style="width:150px" type="text">
+</div>
+<div style="clear:none;margin-right:40px">
+<label>Formatted time</label>
+<input name="formatted_time" id="formatted_time" value="Fri, 09 Dec 2016 12:46:30 UTC+0100 (CET)" onkeyup="to_unix(this.value)" class="txtin blr mout" onfocus="bfc=0" onblur="bfc=1" type="text">
+</div>
+<div style="clear:none;display:none">
+<label>ISO formatted time</label>
+<input name="iso_formatted_time" id="iso_formatted_time" value="2016-12-09 12:46:30 3600" onkeyup="to_unix(this.value)" class="txtin blr mout" onfocus="bfc=0" onblur="bfc=1" type="text">
+</div>
+</form>
+
+<!-- </div> -->
+
+<div style="margin-bottom:0px;xxfont-size:14px;xxline-height:22px">
+<h2>Useful Unix timestamp shortcuts</h2>
+<p><a href="#" onclick="return add_time(0)">ahora</a>&nbsp;&nbsp;
+<a href="#" onclick="return add_time(60)">+ 1 minute</a>&nbsp;&nbsp;
+<a href="#" onclick="return add_time(300)">+ 5 minute</a>&nbsp;&nbsp;
+<a href="#" onclick="return add_time(900)">+ 15 minute</a>&nbsp;&nbsp;
+<a href="#" onclick="return add_time(86400)">+ 1 day</a>&nbsp;&nbsp;
+<a href="#" onclick="return add_time(2592000)">+ 1 month</a>&nbsp;&nbsp;
+<!-- <a href="Unix_time_now">Unix clock</a></p> -->
+</div>
+
+</div>
+
+<!-- <script src="http://widget.time.is/es.js"></script> -->
+<!-- <script src="https://static.time.is/t10.js"></script> -->
+<!-- <script src="http://widget.time.is/es.js"></script> -->
+<!-- <script src="timeis.js"></script> -->
+<!-- <script src="timeis2.js"></script> -->
+<script>
+function reloj1(){
+//var formatime = document.getElementById('formatted_time').value;
+var formatime = new Date().toString();
+
+// example new Date(): Date 2016-12-10T13:16:36.819Z
+// example new Date().toString(): Sat Dec 10 2016 14:17:37 GMT+0100 (CET)
+// console.log(new Date().toString());
+
+	document.getElementById("twd").innerHTML = new Date().valueOf();
+	//document.getElementById("twd1").innerHTML = Math.round(new Date().getTime());
+	document.getElementById("twd2").innerHTML = new Date(formatime).getTime()/1000;
+	//setTimeout("reloj()", 1000);
+}//reloj1();
+setInterval('reloj1()',1000);
+
+function from_unix(v){
+	document.getElementById('formatted_time').value=new Date(v.replace(/ /g,'')*1000).toString().replace('GMT','UTC')}
+function to_unix(v){
+	document.getElementById('unix_time').value=new Date(v).getTime()/1000}
+function add_time(t){
+if(t==0)t=new Date().getTime()/1000
+else t+=(document.getElementById('unix_time').value*1)
+from_unix(Math.floor(t)+'')
+to_unix(document.getElementById('formatted_time').value+'')
+return false
+}
+
+function reloj(){
+var unitime = document.getElementById('unix_time').value;
+var formatime = document.getElementById('formatted_time').value;
+
+var date = new Date(unitime*1000);
+var dateunix = new Date(formatime).getTime();
+
+var hours = date.getHours();
+var minutes = "0" + date.getMinutes();
+var seconds = "0" + date.getSeconds();
+var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+//setTimeout("reloj()", 1000);
+
+
+document.getElementById('demo').innerHTML = formattedTime;
+document.getElementById('demo2').innerHTML = dateunix; // .getTime()/1000 sec
+}//reloj();
+setInterval('reloj()',1000);
+//setInterval('add_time(0)',1000);
+
+//setTimeout("add_time(0)", 1000);
+
+//time_is_widget.init({Barcelona_z718:{}});
+
+// Find the <a href="https://time.is/" id="time_is_link" rel="nofollow">current time for any location or time zone on Time.is!</a>
+
+//time_is_widget.init({Barcelona_z718:{}});
+
+// time_is_widget.init({
+// 	UTC_za00 : {},
+// 	Barcelona_z718:{},
+// 	New_York_z161 : {},
+// 	Tokyo_z444 : {},
+// 	Ecuador_z139 : {}
+
+//Tokyo_z444 : {coords: "59.33258,18.06490"},
+
+// New_York_z161 : {
+	//template: "SUN",
+	//sun_format: "srhour:srminute",
+	//coords: "40.71427,-74.00597"},
+//});
+
+
+
+// Format value as two digits 0 => 00, 1 => 01
+function twoDigits(value) {
+   if(value < 10) { return '0' + value;}
+   return value;
+}
+
+var timestamp = 1439329773;
+
+var date = new Date(timestamp*1000);
+// display in format HH:MM:SS
+var formattedTime = twoDigits(date.getHours()) 
+      + ':' + twoDigits(date.getMinutes()) 
+      + ':' + twoDigits(date.getSeconds());
+console.log(formattedTime);
+
+var date = new Date(timestamp * 1000);
+var formattedDate = ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + date.getFullYear() + ' ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
+console.log(formattedDate);
+</script>
+</body>
+</html>

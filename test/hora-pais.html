@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
+<script src="https://use.fontawesome.com/ffdde8e343.js"></script>
+<style>
+body {background-color: black;font-family: 'Orbitron', sans-serif;
+    color: #0BFDFD;
+    text-shadow: 0 0 1rem #0BFDFD;
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="hora"></h1>
+<h1 id="horapais"></h1>
+<h1 id="hora3"></h1>
+<!-- <i class="fa fa-battery-quarter"></i> -->
+
+<p id="hora1"></p>
+<p id="horapais1"></p>
+<p id="convert"></p>
+
+
+<script src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+<!-- <script src="http://momentjs.com/downloads/moment-timezone.min.js"></script> -->
+<script src="http://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+<script>
+function hora(){
+  moment.locale('es');
+  var horalocal = moment().format('HH:mm:ss');
+  var horaoffset = moment().utcOffset("-06:00").format('HH:mm:ss');
+  //var hora3 = moment();
+//var london    = moment().tz("America/Los_Angeles");
+//var london     = newYork.clone().tz("Europe/London");
+//var otrahora = moment.tz('HH:mm:ss', "America/Toronto");
+//console.log(moment().tz("America/Los_Angeles").format());
+//moment().utcOffset("+08:00");
+//console.log(moment().utcOffset("+08:00"));
+  document.getElementById("hora").innerHTML= horalocal;
+  document.getElementById("horapais").innerHTML= horaoffset;
+  
+document.getElementById("hora3").innerHTML= moment().tz('America/Guayaquil').format('HH:mm:ss');
+  //setTimeout('hora()', 1000);
+}setInterval(hora,1000);
+
+// http://momentjs.com/timezone/
+
+//console.log(moment("2016-12-01 12:00").format('HH:mm:ss'));
+    
+    
+//____________________
+    
+function reloj(){
+
+  var fecha = new Date();
+  var hora = fecha.getHours();
+  var min = fecha.getMinutes();
+  var seg = fecha.getSeconds();
+  
+  var currentTimezone = (fecha.getTimezoneOffset()/60) * -6;
+  var hora2 = new Date() - currentTimezone;
+  var hora3 = new Date(hora2);
+  
+  //document.write(new Date().toLocaleDateString() +' - '+new Date().toLocaleTimeString());
+var d = new Date();
+var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+var pais = utc + (3600000*-5);
+var nd = new Date(pais);
+// nd.toLocaleString();
+
+var hours = nd.getHours();
+var minutes = "0" + nd.getMinutes();
+var seconds = "0" + nd.getSeconds();
+var lahora = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+// console.log(seconds.substr(-2));
+  
+document.getElementById("hora1").innerHTML = "Hora de ecuador es " + lahora + "<br>";
+
+document.getElementById("horapais1").innerHTML= hora + ":" + min +":"+ seconds.substr(-2) +" hora a timestamp: "+hora2 + " timestamp a hora: " +hora3.toLocaleTimeString();
+    
+
+
+
+    setTimeout("reloj()", 1000);  
+}reloj();
+
+function time(ms) {
+    return new Date(ms).toTimeString().split(' ')[0];
+}
+console.log( time(1481384777) );
+
+
+
+// convert_______________
+    
+    function timeConverter(UNIX_timestamp){
+      var a = new Date(UNIX_timestamp * 1000);
+      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var year = a.getFullYear();
+      var month = months[a.getMonth()];
+      var date = a.getDate();
+      var hour = a.getHours();
+      var min = a.getMinutes();
+      var sec = a.getSeconds();
+      //var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+      var time = hour + ':' + min + ':' + sec ;
+      return time;
+    }
+
+
+document.getElementById("convert").innerHTML = timeConverter(1481384777);
+//document.getElementById("convert").innerHTML = setTimeout("timeConverter(1481384777)", 1000);
+
+var timestamp = 1293683278;
+var date = new Date(timestamp*1000);
+var iso = date.toISOString().match(/(\d{2}:\d{2}:\d{2})/);
+
+console.log(iso[1]);
+
+</script>
+</body>
+</html>
