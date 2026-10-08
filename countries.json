@@ -374,7 +374,7 @@
   {
   "name":"Equatorial Guinea",
   "phoneCode":"+240",
-  "capital":"Malabo,Oyala",
+  "capital":"Ciudad de la Paz",
   "abbr":"GNQ"
   },
   {
@@ -388,6 +388,12 @@
   "phoneCode":"+372",
   "capital":"Tallinn",
   "abbr":"EST"
+  },
+  {
+  "name":"Eswatini",
+  "phoneCode":"+268",
+  "capital":"Mbabane",
+  "abbr":"SWZ"
   },
   {
   "name":"Ethiopia",
@@ -626,7 +632,7 @@
   {
   "name":"Kazakhstan",
   "phoneCode":"+7",
-  "capital":"Nur-Sultan",
+  "capital":"Astana",
   "abbr":"KAZ"
   },
   {
@@ -718,12 +724,6 @@
   "phoneCode":"+853",
   "capital":"Macao",
   "abbr":"MAC"
-  },
-  {
-  "name":"Macedonia",
-  "phoneCode":"+389",
-  "capital":"Skopje",
-  "abbr":"MKD"
   },
   {
   "name":"Madagascar",
@@ -939,7 +939,7 @@
   "name":"North Macedonia",
   "phoneCode":"+389",
   "capital":"Skopje",
-  "abbr":"MNP"
+  "abbr":"MKD"
   },
   {
   "name":"Norway",
@@ -1222,12 +1222,6 @@
   "phoneCode":"+597",
   "capital":"Paramaribo",
   "abbr":"SUR"
-  },
-  {
-  "name":"Swaziland",
-  "phoneCode":"+268",
-  "capital":"Mbabane",
-  "abbr":"SWZ"
   },
   {
   "name":"Sweden",
